@@ -839,7 +839,7 @@ async function priceInSol(){
     if (r && r.value){
       const d = Uint8Array.from(atob(r.value.data[0]), c => c.charCodeAt(0)), dv = new DataView(d.buffer);
       const vTok = Number(dv.getBigUint64(8, true)), vSol = Number(dv.getBigUint64(16, true)), done = d[48] === 1;
-      if (!done && vTok > 0) v = (vSol / 1e9) / (vTok / 1e6);
+      if (!done && vTok > 0 && vSol >= 29.5e9) v = (vSol / 1e9) / (vTok / 1e6);   // SOL curves start at 30 virtual SOL
     }
   } catch (e){}
   if (!v){
