@@ -194,6 +194,19 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 .stub{display:inline-flex;align-items:center;justify-content:center;width:62px;height:30px;font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--on-ink);background:var(--grad);-webkit-mask:radial-gradient(circle at 0 50%,transparent 5px,#000 5.5px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 5px,#000 5.5px) right/51% 100% no-repeat;mask:radial-gradient(circle at 0 50%,transparent 5px,#000 5.5px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 5px,#000 5.5px) right/51% 100% no-repeat;animation:pop .35s both}
 .stub.more{background:rgba(255,236,230,.16);color:var(--ink)}
 @keyframes pop{from{transform:translateY(6px);opacity:0}}
+.check{display:flex;flex-direction:column;gap:10px}
+.wfield{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 16px;border:1px solid var(--line-2);border-radius:6px;background:rgba(11,8,19,.6);transition:border-color .2s}
+.wfield:focus-within{border-color:var(--tint-1)}
+.wfield input{flex:1;min-width:0;background:transparent;border:0;outline:0;font-family:var(--mono);font-size:13px;letter-spacing:.02em;padding:10px 0}
+.wfield input::placeholder{color:var(--ink-3)}
+.check.off .wfield{opacity:.45;pointer-events:none}
+.wres{margin:0;font-size:15px;line-height:1.5;color:var(--ink-2);min-height:1.5em}
+.wres b{color:var(--ink);font-weight:600}
+.wres .big{font-family:var(--display);font-weight:800;font-size:22px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wres .bad{color:#ffb2a8}
+.wres small{display:block;font-size:13px;color:var(--ink-3)}
+.or{display:flex;align-items:center;gap:12px;padding-top:4px}
+.or::after{content:"";flex:1;height:1px;background:var(--line)}
 .calc-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
 #a-tix{width:min(52vh,36vw,500px);aspect-ratio:1;justify-self:center}
 
@@ -391,17 +404,17 @@ footer{padding-block:clamp(120px,15vw,210px) 40px;scroll-margin-top:70px}
     <div class="palms" id="palms" aria-hidden="true"></div>
     <div class="wrap">
       <div class="stage">
-        <div class="eyebrow bar"><span>Draw #001 · <span data-k="drawDay">Thu 19 Nov</span><span class="xs-hide"> · GTA 6 release day</span></span></div>
+        <div class="eyebrow bar"><span>Draw #001 · <span data-k="drawDay">Thu 19 Nov</span><span class="xs-hide"> · the minute GTA 6 unlocks</span></span></div>
         <h1><span class="l1">Hold.</span><span class="l2">Win <em>GTA 6.</em></span></h1>
         <div class="anchor drum" id="a-hero">
           <div class="callout l c1 dim"><span>One ticket</span><b><span data-k="per">0.3 SOL</span> held</b></div>
-          <div class="callout r c3 dim"><span>Draw #001</span><b data-k="drawDay">Thu 19 Nov</b></div>
+          <div class="callout r c3 dim"><span>Draw #001</span><b data-k="drawWhen">Thu 19 Nov</b></div>
           <div class="callout l c2 dim"><span>Prize</span><b>GTA 6 · PS5 or Xbox</b></div>
           <div class="callout r c4 dim"><span>Ticket cap</span><b>None</b></div>
         </div>
       </div>
       <div class="hero-foot">
-        <p class="lede">Every <strong><span data-k="per">0.3 SOL</span></strong> of <span data-t="tk">$GIVEAWAY</span> you hold is one ticket in the drum. No cap. The first copy of GTA 6 is on the dev and gets drawn on release day. <strong>After that, every <span data-k="price">$79.99</span> in fees buys another copy, and we draw again.</strong></p>
+        <p class="lede">Every <strong><span data-k="per">0.3 SOL</span></strong> of <span data-t="tk">$GIVEAWAY</span> you hold is one ticket in the drum. No cap. The first copy of GTA 6 is on the dev and gets drawn the minute the game unlocks. <strong>After that, every <span data-k="price">$79.99</span> in fees buys another copy, and we draw again.</strong></p>
         <div class="buybox">
           <div class="clock" id="clock">
             <span class="label" id="clock-label">Draw #001 starts in</span>
@@ -455,10 +468,20 @@ footer{padding-block:clamp(120px,15vw,210px) 40px;scroll-margin-top:70px}
       <div class="plate-head">
         <div class="eyebrow bar">Seg. 03 · Your tickets</div>
         <h2><span data-k="per">0.3 SOL</span>. <em>One ticket.</em></h2>
-        <p>Type what your <span data-t="tk">$GIVEAWAY</span> is worth in SOL. There is no cap, so every extra <span data-k="per">0.3 SOL</span> is one more ball in the drum.</p>
+        <p>Paste your wallet to see your tickets right now, or count them yourself. There is no cap, so every extra <span data-k="per">0.3 SOL</span> is one more ball in the drum.</p>
       </div>
       <div class="tix-grid">
         <div class="calc">
+          <div class="check" id="check">
+            <label class="label" for="w-in">Check a wallet</label>
+            <form class="wfield" id="w-form" novalidate>
+              <input id="w-in" type="text" autocomplete="off" spellcheck="false" placeholder="Paste a Solana wallet address" aria-label="Wallet address">
+              <button class="btn small" type="button" id="w-phantom" hidden>Use Phantom</button>
+              <button class="btn primary small" type="submit" id="w-go">Check</button>
+            </form>
+            <p class="wres" id="w-res" aria-live="polite"></p>
+          </div>
+          <div class="or"><span class="label">Or count it yourself</span></div>
           <label class="label" for="sol-in">Your <span data-t="tk">$GIVEAWAY</span>, worth in SOL</label>
           <div class="calc-row">
             <div class="field"><input id="sol-in" type="number" min="0" step="0.1" value="1.5" inputmode="decimal" autocomplete="off"><span class="u">SOL</span></div>
@@ -566,9 +589,10 @@ footer{padding-block:clamp(120px,15vw,210px) 40px;scroll-margin-top:70px}
       <div><div class="eyebrow bar" style="margin-bottom:20px">Questions</div><h2>Before you <em>ask.</em></h2></div>
       <div class="faq">
         <details><summary>What exactly do I win?</summary><p>A copy of GTA 6, Standard Edition, for PS5 or Xbox Series X|S, for your own store region. Rockstar has not announced a PC version, so console only for now.</p></details>
-        <details><summary>How do tickets work?</summary><p>Every <span data-k="per">0.3 SOL</span> worth of <span data-t="tk">$GIVEAWAY</span> in your wallet at the snapshot is one ticket. There is no cap. 3 SOL is 10 tickets, 30 SOL is 100.</p></details>
-        <details><summary>When is the snapshot?</summary><p>We post the snapshot time on X before every draw. Hold through it and your tickets are in.</p></details>
-        <details><summary>How is the winner picked?</summary><p>At random from all tickets, so more tickets means more chances. The winning wallet is posted on X and on the results board. The winner proves the wallet is theirs and picks PS5 or Xbox.</p></details>
+        <details><summary>How do tickets work?</summary><p>At the snapshot, the <span data-t="tk">$GIVEAWAY</span> in each wallet is valued in SOL at that moment’s price. Every full <span data-k="per">0.3 SOL</span> is one ticket, with no cap: 3 SOL is 10 tickets, 30 SOL is 100. Your share of tickets is your share of the holdings, so the price can’t tilt the odds.</p></details>
+        <details><summary>How do I see my tickets?</summary><p>Paste your wallet in “Check a wallet” above, or tap Use Phantom. The page reads your balance straight from Solana and the price from DexScreener, and shows your tickets right now. The number moves with the price until the snapshot.</p></details>
+        <details><summary>When is the snapshot?</summary><p>Draw #001 is the minute GTA 6 unlocks in the US: midnight Eastern on Thu 19 Nov (05:00 UTC, <span data-k="drawWhen"></span> your time). The snapshot is taken at that minute. For later draws we post the time on X first. Hold through it and your tickets are in.</p></details>
+        <details><summary>How is the winner picked?</summary><p>Every wallet’s tickets are numbered in one list, which we publish with the snapshot. The winning number comes from a Solana block hash we name in advance, so nobody can choose it and anyone can check it. The winning wallet is posted on X and on the results board. The winner proves the wallet is theirs and picks PS5 or Xbox.</p></details>
         <details><summary>Who can’t win?</summary><p>The dev wallet, the bonding curve and pool addresses never get tickets.</p></details>
         <details><summary>Someone DMed me saying I won.</summary><p>That’s a scam. We never DM first. Winners are only posted on our X and on this page.</p></details>
         <details><summary>Is this connected to Rockstar?</summary><p>No. GTA 6 is the prize, bought at the normal store price. We are not affiliated with Rockstar Games or Take-Two Interactive.</p></details>
@@ -613,14 +637,15 @@ const CONFIG = {
   ca: "",                      // paste the mint address after launch
   x: "",                       // e.g. "https://x.com/yourhandle"
   dexscreener: "",             // optional
+  rpc: "",                     // optional own Solana RPC for the wallet check; empty = free public RPCs
   site: "",                    // e.g. "gta6giveaway.fun", printed on ticket cards
   solPerTicket: 0.3,
   copyPrice: 79.99,            // USD, GTA 6 Standard Edition
-  firstDraw: "2026-11-19T20:00:00+01:00",
+  firstDraw: "2026-11-19T05:00:00Z",   // the minute GTA 6 unlocks in the US (midnight ET)
   totalTickets: 0,             // tickets in the drum at the last snapshot (0 hides odds)
   vault: { usd: 0, copiesBought: 0, updated: "" },
   draws: [
-    { n: 1, when: "2026-11-19T20:00:00+01:00", paidBy: "Dev", winner: "", status: "scheduled" },
+    { n: 1, when: "2026-11-19T05:00:00Z", paidBy: "Dev", winner: "", status: "scheduled" },
     { n: 2, when: "", paidBy: "Fees", winner: "", status: "waiting" }
   ]
 };
@@ -637,6 +662,7 @@ const short = s => s.length > 12 ? s.slice(0, 4) + "…" + s.slice(-4) : s;
 const TK = "$" + CONFIG.ticker;
 const money = v => "$" + Number(v || 0).toFixed(2);
 const fmtDay = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" }); };
+const fmtWhen = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleString("en-GB", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short" }); };
 const PER = CONFIG.solPerTicket;
 const TOKEN_ADDR = CONFIG.ca && isAddr(CONFIG.ca) ? CONFIG.ca : null;
 
@@ -645,6 +671,7 @@ document.querySelectorAll('[data-t="name"]').forEach(el => el.textContent = CONF
 document.querySelectorAll('[data-k="per"]').forEach(el => el.textContent = PER + " SOL");
 document.querySelectorAll('[data-k="price"]').forEach(el => el.textContent = money(CONFIG.copyPrice));
 document.querySelectorAll('[data-k="drawDay"]').forEach(el => el.textContent = fmtDay(CONFIG.firstDraw));
+document.querySelectorAll('[data-k="drawWhen"]').forEach(el => el.textContent = fmtWhen(CONFIG.firstDraw));
 document.title = `${CONFIG.name} · ${TK}`;
 
 /* ===== Palms (generated silhouettes) ===== */
@@ -701,7 +728,7 @@ function palmSVG(seed, lean, fronds){
 /* ===== Crawl ===== */
 (function crawl(){
   const day = fmtDay(CONFIG.firstDraw);
-  const items = [`${PER} SOL held = 1 ticket`, "No cap on tickets", `Draw #001 · ${day} · GTA 6 release day`, "Copy #1 paid by the dev",
+  const items = [`${PER} SOL held = 1 ticket`, "No cap on tickets", `Draw #001 · ${day} · the minute GTA 6 unlocks in the US`, "Copy #1 paid by the dev",
     `Every ${money(CONFIG.copyPrice)} in fees = one more copy`, "PS5 or Xbox Series X|S", "Winners posted on X", "We never DM first"];
   const html = items.map(t => `<span>${t}</span>`).join("");
   $("crawl").innerHTML = html + html;
@@ -753,6 +780,73 @@ $("sol-in").addEventListener("input", () => renderTickets("input"));
 $("sol-range").addEventListener("input", e => { $("sol-in").value = (+e.target.value).toFixed(1).replace(/\.0$/, ""); renderTickets("range"); });
 document.querySelectorAll("#chips button").forEach(b => b.addEventListener("click", () => { $("sol-in").value = b.dataset.v; renderTickets("chip"); }));
 
+/* ===== Wallet check: balance from Solana RPC, price from DexScreener (no keys) ===== */
+const RPCS = CONFIG.rpc ? [CONFIG.rpc] : ["https://solana-rpc.publicnode.com", "https://api.mainnet-beta.solana.com"];
+async function rpc(method, params){
+  let lastErr;
+  for (const url of RPCS){
+    try {
+      const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }) });
+      if (!r.ok){ lastErr = new Error("http " + r.status); continue; }
+      const j = await r.json(); if (j.error){ lastErr = new Error(j.error.message); continue; }
+      return j.result;
+    } catch (e){ lastErr = e; }
+  }
+  throw lastErr || new Error("rpc");
+}
+async function tokenBalance(owner){
+  const res = await rpc("getTokenAccountsByOwner", [owner, { mint: TOKEN_ADDR }, { encoding: "jsonParsed", commitment: "confirmed" }]);
+  return (res && res.value || []).reduce((a, acc) => a + Number(acc.account.data.parsed.info.tokenAmount.uiAmountString || 0), 0);
+}
+let priceCache = { t: 0, v: 0 };
+async function priceInSol(){
+  if (Date.now() - priceCache.t < 30000 && priceCache.v > 0) return priceCache.v;
+  const pick = pairs => {
+    const ok = (pairs || []).filter(p => p && p.priceNative && p.quoteToken && /^(W?SOL)$/i.test(p.quoteToken.symbol || ""));
+    ok.sort((a, b) => ((b.liquidity && b.liquidity.usd) || 0) - ((a.liquidity && a.liquidity.usd) || 0));
+    return ok.length ? parseFloat(ok[0].priceNative) : 0;
+  };
+  let v = 0;
+  try { const r = await fetch(`https://api.dexscreener.com/tokens/v1/solana/${TOKEN_ADDR}`); if (r.ok) v = pick(await r.json()); } catch (e){}
+  if (!v){ try { const r = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDR}`); if (r.ok) v = pick((await r.json()).pairs); } catch (e){} }
+  if (!v) throw new Error("price");
+  priceCache = { t: Date.now(), v }; return v;
+}
+const fmtAmt = n => n >= 1e9 ? (n / 1e9).toFixed(2) + "B" : n >= 1e6 ? (n / 1e6).toFixed(2) + "M" : n >= 1e3 ? (n / 1e3).toFixed(1) + "K" : n.toFixed(n < 10 ? 2 : 0);
+async function checkWallet(){
+  const out = $("w-res"), addr = $("w-in").value.trim();
+  if (!isAddr(addr)){ out.innerHTML = `<span class="bad">That isn’t a Solana wallet address.</span>`; return; }
+  out.textContent = "Checking…"; $("w-go").disabled = true;
+  try {
+    const [bal, px] = await Promise.all([tokenBalance(addr), priceInSol()]);
+    const sol = bal * px, t = ticketsFor(sol);
+    if (bal <= 0){ out.innerHTML = `This wallet holds no ${TK} yet.<small>Every ${PER} SOL you hold is one ticket.</small>`; }
+    else {
+      out.innerHTML = `<span class="big">${t.toLocaleString("en-US")} ${t === 1 ? "ticket" : "tickets"}</span> · <b>${fmtAmt(bal)} ${TK}</b> worth <b>${sol.toFixed(3)} SOL</b>` +
+        `<small>${t === 0 ? `Hold ${(PER - sol).toFixed(3)} SOL more for your first ticket. ` : ""}This moves with the price until the snapshot.</small>`;
+      $("sol-in").value = sol.toFixed(2); renderTickets("wallet");
+    }
+  } catch (e){
+    out.innerHTML = `<span class="bad">Couldn’t reach Solana right now. Try again in a minute.</span>`;
+  } finally { $("w-go").disabled = false; }
+}
+const phantom = () => (window.phantom && window.phantom.solana) || (window.solana && window.solana.isPhantom ? window.solana : null);
+(function wireCheck(){
+  if (!TOKEN_ADDR){
+    $("check").classList.add("off");
+    $("w-res").innerHTML = `Goes live the moment ${TK} launches. Until then, count it yourself below.`;
+    return;
+  }
+  $("w-form").addEventListener("submit", e => { e.preventDefault(); checkWallet(); });
+  $("w-in").addEventListener("paste", () => setTimeout(() => { if (isAddr($("w-in").value.trim())) checkWallet(); }, 0));
+  if (phantom()){
+    $("w-phantom").hidden = false;
+    $("w-phantom").addEventListener("click", async () => {
+      try { const r = await phantom().connect(); $("w-in").value = r.publicKey.toString(); checkWallet(); } catch (e){}
+    });
+  }
+})();
+
 /* ===== Vault + board ===== */
 let vaultPct = 0;
 function renderVault(){
@@ -766,11 +860,11 @@ function renderVault(){
   const given = CONFIG.draws.filter(d => d.status === "won").length;
   $("s-given").textContent = given; $("s-bought").textContent = v.copiesBought || 0;
   const next = CONFIG.draws.find(d => d.status !== "won");
-  $("s-next").textContent = next ? (next.when ? fmtDay(next.when) : "When the vault fills") : "When the vault fills";
+  $("s-next").textContent = next ? (next.when ? fmtWhen(next.when) : "When the vault fills") : "When the vault fills";
 }
 function renderBoard(){
   const rows = CONFIG.draws.map(d => {
-    const when = d.when ? fmtDay(d.when) : "When the vault hits " + money(CONFIG.copyPrice);
+    const when = d.when ? fmtWhen(d.when) : "When the vault hits " + money(CONFIG.copyPrice);
     const win = d.winner ? (isAddr(d.winner) ? `<a href="https://solscan.io/account/${d.winner}" target="_blank" rel="noopener">${short(d.winner)}</a>` : d.winner) : "—";
     const label = { scheduled: "Scheduled", waiting: "Waiting", live: "Drawing", won: "Won" }[d.status] || d.status;
     return `<div class="brow" role="row"><span class="num" role="cell">#${String(d.n).padStart(3, "0")}</span><span class="when" role="cell">${when}</span><span class="by" role="cell"><span class="lbl">Paid by </span>${d.paidBy === "Dev" ? "The dev" : "Fees"}</span><span class="win" role="cell"><span class="lbl">Winner </span>${win}</span><span class="pill ${d.status}" role="cell">${label}</span></div>`;
@@ -1178,7 +1272,7 @@ function makeCard(t){
   const cs = getComputedStyle(document.documentElement), disp = cs.getPropertyValue("--display"), mono = cs.getPropertyValue("--mono"), text = cs.getPropertyValue("--text");
   x.textBaseline = "top";
   x.fillStyle = "#fff4ee"; x.font = `800 30px ${disp}`; x.fillText(CONFIG.name.toUpperCase(), 64, 58);
-  x.fillStyle = "rgba(255,236,230,.55)"; x.font = `500 16px ${mono}`; x.fillText(`DRAW #001 · ${fmtDay(CONFIG.firstDraw).toUpperCase()} · GTA 6 RELEASE DAY`, 64, 104);
+  x.fillStyle = "rgba(255,236,230,.55)"; x.font = `500 16px ${mono}`; x.fillText(`DRAW #001 · ${fmtDay(CONFIG.firstDraw).toUpperCase()} · THE MINUTE GTA 6 UNLOCKS`, 64, 104);
   const num = t.toLocaleString("en-US"), size = num.length <= 2 ? 250 : num.length <= 3 ? 210 : num.length <= 5 ? 160 : 120;
   x.font = `800 ${size}px ${disp}`;
   const tw = x.measureText(num).width, tg = x.createLinearGradient(60, 0, 60 + tw, 0); tg.addColorStop(0, "#ff4f9a"); tg.addColorStop(1, "#ffb04a");

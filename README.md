@@ -15,12 +15,18 @@ Allt ligger i en fil: `index.html`. Bilden som visas när länken delas på X he
 | `site` | Domänen, syns på ticket-korten |
 | `solPerTicket` | 0.3 |
 | `copyPrice` | 79.99 (USD, Standard Edition) |
-| `firstDraw` | Tid för dragning #1. Nu `2026-11-19T20:00:00+01:00` (20:00 svensk tid). Nedräkningen räknar hit. |
+| `firstDraw` | Tid för dragning #1. Nu `2026-11-19T05:00:00Z` = när GTA 6 låses upp i USA (midnatt ET, 06:00 svensk tid). Nedräkningen räknar hit. |
+| `rpc` | Valfritt. Egen Solana-RPC för wallet-kollen. Tom = gratis publika RPC:er. |
 | `totalTickets` | Antal tickets vid senaste snapshot. Fyll i för att visa odds i ticket-räknaren. 0 = dolt. |
 | `vault.usd` | Hur mycket som ligger i vaulten just nu (USD). Fyller mätaren. |
 | `vault.copiesBought` | Hur många kopior fees har köpt |
 | `vault.updated` | T.ex. `"20 Nov, 14:00"` |
 | `draws` | Resultattavlan. Status: `scheduled`, `waiting`, `live` eller `won`. Sätt `winner` till vinnarens plånboksadress när den är dragen. |
+
+## Så funkar tickets
+
+- Vid snapshot värderas varje plånboks $GIVEAWAY i SOL till priset just då. Varje hel 0,3 SOL = 1 ticket, inget tak.
+- "Check a wallet" på sajten läser saldot direkt från Solana och priset från DexScreener (inga nycklar) och visar antal tickets just nu. Den slås på automatiskt när `ca` är ifyllt.
 
 ## Deploy
 
