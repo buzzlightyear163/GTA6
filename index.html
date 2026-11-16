@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hold $GIVEAWAY, win GTA 6. Every 0.3 SOL you hold is one ticket, no cap. Copy #1 is paid by the dev and drawn on release day. After that, every $79.99 in fees buys another copy.">
+<meta name="theme-color" content="#0b0813">
+<meta property="og:title" content="GTA 6 Giveaway · $GIVEAWAY">
+<meta property="og:description" content="Hold. Win GTA 6. Every 0.3 SOL held is a ticket, no cap. Fees keep buying copies.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/og.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0813'/%3E%3Ccircle cx='16' cy='15' r='9.5' fill='none' stroke='%23fff4ee' stroke-opacity='.6' stroke-width='1.4'/%3E%3Cellipse cx='16' cy='15' rx='12.5' ry='3.2' fill='none' stroke='%23ff4f9a' stroke-width='1.8'/%3E%3Ccircle cx='13' cy='18.5' r='3' fill='%23ff4f9a'/%3E%3Ccircle cx='19' cy='19.5' r='2.5' fill='%23ffb04a'/%3E%3C/svg%3E">
+<title>GTA 6 Giveaway · $GIVEAWAY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,50..150,100..900&family=Figtree:wght@400..600&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a televised lottery draw at sunset. One live glass drum travels between broadcast segments; wide italic display type, mono lower-thirds. */
+:root{
+  --bg:#0b0813;
+  --ink:#fff4ee;
+  --ink-2:#cdbbc8;
+  --ink-3:#88768c;
+  --line:rgba(255,236,230,.10);
+  --line-2:rgba(255,236,230,.22);
+  --on-ink:#1a0814;
+  --tint-1:#ff4f9a;
+  --tint-2:#ffb04a;
+  --sea:#4fe0d0;
+  --grad:linear-gradient(100deg,var(--tint-1),var(--tint-2));
+  --display:"Anybody","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --text:"Figtree","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"Spline Sans Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4vw,56px);
+  --max:1320px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+::selection{background:var(--tint-1);color:var(--on-ink)}
+:focus-visible{outline:1.5px solid var(--tint-2);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter);position:relative}
+.label{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.tint{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+#stage{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block}
+.grain{position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main,footer,.top{position:relative;z-index:2}
+body.no-gl{background:radial-gradient(ellipse 46% 34% at 50% 52%,rgba(255,150,90,.42),transparent 70%),radial-gradient(ellipse 90% 40% at 50% 70%,rgba(255,79,154,.18),transparent 70%),linear-gradient(#0b0813 0%,#160b1f 58%,#0b0813 100%) fixed}
+body.no-gl .anchor.drum{border-radius:50%;background:radial-gradient(circle at 36% 30%,rgba(255,255,255,.42),rgba(255,140,170,.12) 42%,transparent 70%);box-shadow:inset 0 0 0 1px rgba(255,236,230,.28)}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.top.scrolled{background:rgba(11,8,19,.74);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;gap:32px;height:70px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.01em;text-transform:uppercase;font-variation-settings:"wdth" 120;white-space:nowrap}
+.brand svg{width:30px;height:30px;flex:none}
+.links{display:flex;gap:26px}
+.links a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);transition:color .15s}
+.links a:hover{color:var(--ink)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.onair{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#ffd6e6;padding:5px 10px;border:1px solid rgba(255,79,154,.55);border-radius:4px;background:rgba(255,79,154,.12);white-space:nowrap}
+.onair i{width:7px;height:7px;border-radius:50%;background:var(--tint-1);box-shadow:0 0 10px var(--tint-1);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;border-radius:6px;border:1px solid var(--line-2);color:var(--ink);background:rgba(11,8,19,.4);cursor:pointer;transition:filter .2s,border-color .2s,color .2s,background .2s;white-space:nowrap}
+.btn:hover{border-color:rgba(255,236,230,.5)}
+.btn.primary{background:var(--grad);color:var(--on-ink);border-color:transparent;box-shadow:0 8px 30px -10px rgba(255,79,154,.6)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.small{padding:9px 14px;font-size:10.5px}
+.btn.ghost{border-color:transparent;background:none;padding-inline:4px}
+.btn.ghost:hover{color:var(--tint-2)}
+
+/* hero */
+.hero{position:relative;padding-top:clamp(18px,3.5vh,40px);overflow:hidden}
+.palms{position:absolute;inset:0;z-index:0;pointer-events:none}
+.palm{position:absolute;bottom:0;overflow:visible;transform:translateX(-50%)}
+.palm path,.palm circle{fill:#050208}
+.palm.p1{left:calc(100% - 1.5vw);height:94%}
+.palm.p2{left:2.5vw;height:68%}
+.hero>.wrap{z-index:1}
+.stage{position:relative;height:clamp(470px,57vh,700px)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.eyebrow.bar::before{content:"";width:28px;height:2px;background:var(--grad)}
+.hero .eyebrow{position:absolute;left:0;top:0}
+h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(60px,10vw,172px);line-height:.84;letter-spacing:-.045em;font-variation-settings:"wdth" 112}
+h1 span{display:block;text-shadow:0 6px 50px rgba(11,8,19,.55)}
+h1 em,h2 em,.final em{font-style:italic;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em;text-shadow:none}
+.l1{position:absolute;left:0;top:clamp(34px,6vh,64px)}
+.l2{position:absolute;right:0;bottom:0;text-align:right}
+.anchor{position:relative}
+#a-hero{position:absolute;left:50%;top:45%;width:min(60vh,42vw,600px);aspect-ratio:1;transform:translate(-50%,-50%)}
+.callout{position:absolute;display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;transition:opacity .6s}
+.callout b{font-weight:500;color:var(--ink);letter-spacing:.03em;text-transform:none;font-size:12.5px}
+.callout::after{content:"";position:absolute;top:8px;height:1px;width:clamp(40px,6vw,96px);background:linear-gradient(90deg,var(--line-2),rgba(255,236,230,.5))}
+.callout.r{left:100%;padding-left:clamp(52px,7vw,110px)}
+.callout.r::after{left:-36px;background:linear-gradient(270deg,var(--line-2),rgba(255,236,230,.55))}
+.callout.l{right:100%;padding-right:clamp(52px,7vw,110px);text-align:right;align-items:flex-end}
+.callout.l::after{right:-36px}
+.callout::before{content:"";position:absolute;top:6px;width:5px;height:5px;border-radius:50%;background:var(--tint-2)}
+.callout.l::before{right:-38px}
+.callout.r::before{left:-38px}
+.c1{top:52%}.c2{top:76%}.c3{top:22%}.c4{top:46%}
+.callout.dim{opacity:0}
+.hero-foot{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px 64px;align-items:end;margin-top:clamp(22px,3.5vh,40px)}
+.lede{font-size:clamp(17px,1.3vw,19.5px);line-height:1.55;color:var(--ink-2);max-width:37rem;margin:0}
+.lede strong{color:var(--ink);font-weight:500}
+.clock{display:flex;flex-direction:column;gap:10px}
+.digits{display:flex;gap:6px}
+.digits div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;padding:9px 8px 8px;border:1px solid var(--line-2);border-radius:6px;background:rgba(11,8,19,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.digits b{font-family:var(--mono);font-weight:500;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.digits span{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
+.digits div:first-child{border-color:rgba(255,79,154,.5)}
+.buybox{display:flex;flex-direction:column;gap:12px;align-items:stretch;justify-self:end;width:min(100%,440px)}
+.ca{display:flex;align-items:center;gap:12px;border:1px solid var(--line-2);border-radius:6px;padding:6px 6px 6px 16px;font-family:var(--mono);font-size:12px;background:rgba(11,8,19,.6)}
+.ca .k{letter-spacing:.1em;color:var(--ink-3)}
+.ca .v{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2);padding-block:7px}
+.ca .v.has{color:var(--ink)}
+.crawl{position:relative;z-index:1;margin-top:clamp(30px,4.5vh,52px);display:flex;align-items:stretch;border-block:1px solid var(--line-2);background:rgba(11,8,19,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow:hidden}
+.crawl .tag{position:relative;z-index:1;flex:none;display:flex;align-items:center;gap:8px;padding:0 18px;background:var(--grad);color:var(--on-ink);font-family:var(--display);font-weight:800;font-style:italic;font-size:15px;letter-spacing:.02em;text-transform:uppercase}
+.crawl .tag i{width:7px;height:7px;border-radius:50%;background:var(--on-ink);animation:blink 1.6s infinite}
+.crawl .track{display:flex;flex:none;white-space:nowrap;animation:crawl 46s linear infinite;will-change:transform}
+.crawl .track span{display:inline-flex;align-items:center;gap:22px;padding:13px 11px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.crawl .track span::after{content:"";width:5px;height:5px;transform:rotate(45deg);background:var(--tint-2)}
+@keyframes crawl{to{transform:translateX(-50%)}}
+
+/* plates */
+.plate{padding-block:clamp(96px,12vw,170px);scroll-margin-top:70px}
+.plate-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.72fr);gap:22px 64px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.plate-head .eyebrow{grid-column:1/-1}
+h2{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(40px,5.4vw,88px);line-height:.9;letter-spacing:-.04em;text-wrap:balance;font-variation-settings:"wdth" 108}
+.plate-head p,.sub{margin:0;color:var(--ink-2);font-size:17px;max-width:33rem}
+.note{font-size:13.5px;color:var(--ink-3);margin:18px 0 0}
+
+/* pinned draw */
+.pin{position:relative}
+.pin-inner{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;padding-top:clamp(84px,11vh,116px);padding-bottom:clamp(20px,3.5vh,40px)}
+#draw{height:360vh}
+.draw-grid{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(24px,4vw,64px);min-height:0}
+.d-left{display:flex;flex-direction:column;justify-content:center;gap:22px;min-width:0}
+.d-left h2{font-size:clamp(36px,4.4vw,70px)}
+.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 14px;padding:13px 0;border-bottom:1px solid var(--line);color:var(--ink-3);transition:color .3s}
+.steps li .n{font-family:var(--mono);font-size:11px;padding-top:7px;transition:color .3s}
+.steps li b{font-family:var(--display);font-weight:800;font-size:clamp(22px,2vw,30px);line-height:1.05;font-variation-settings:"wdth" 110;color:inherit}
+.steps li p{grid-column:2;margin:0;font-size:14.5px;color:var(--ink-3);max-height:0;overflow:hidden;transition:max-height .45s,margin .45s}
+.steps li.done{color:var(--ink-2)}
+.steps li.on{color:var(--ink)}
+.steps li.on .n{color:var(--tint-1)}
+.steps li.on p{max-height:5em;margin-top:6px;color:var(--ink-2)}
+.d-right{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;min-width:0}
+#a-draw{width:min(56vh,42vw,560px);aspect-ratio:1}
+.readouts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.readouts div{display:flex;align-items:baseline;gap:10px;padding:8px 12px;border:1px solid var(--line-2);border-radius:6px;background:rgba(11,8,19,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.readouts b{font-family:var(--mono);font-weight:500;font-size:13px;font-variant-numeric:tabular-nums}
+.readouts .ill{border-style:dashed}
+.l3{display:grid;grid-template-columns:auto minmax(0,1fr);border-radius:6px;overflow:hidden;border:1px solid var(--line-2);background:rgba(11,8,19,.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin-top:clamp(12px,2vh,20px)}
+.l3 .tag{display:flex;align-items:center;padding:0 18px;background:var(--grad);color:var(--on-ink);font-family:var(--display);font-weight:800;font-style:italic;font-size:clamp(13px,1.2vw,17px);text-transform:uppercase;white-space:nowrap}
+.l3 .txt{position:relative;height:clamp(56px,7.5vh,76px)}
+.l3 .txt p{position:absolute;inset:0;margin:0;display:flex;align-items:center;padding:0 22px;font-family:var(--display);font-weight:700;font-size:clamp(16px,1.8vw,25px);line-height:1.15;letter-spacing:-.01em;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.l3 .txt p.on{opacity:1;transform:none}
+.l3 .txt em{font-style:italic}
+.meter{height:2px;background:var(--line);position:relative;margin-top:12px}
+.meter i{position:absolute;left:0;top:0;height:2px;width:0;background:var(--grad)}
+
+/* tickets */
+.tix-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,80px);align-items:center}
+.calc{display:flex;flex-direction:column;gap:18px;padding:clamp(18px,2.4vw,30px);border:1px solid var(--line-2);border-radius:10px;background:rgba(11,8,19,.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.calc-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.field{display:flex;align-items:center;gap:10px;padding:6px 16px 6px 18px;border:1px solid var(--line-2);border-radius:6px;background:rgba(11,8,19,.6);transition:border-color .2s}
+.field:focus-within{border-color:var(--tint-1)}
+.field input{width:130px;background:transparent;border:0;outline:0;font-family:var(--mono);font-size:24px;font-weight:500;padding:8px 0;font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.field input::-webkit-outer-spin-button,.field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.field .u{font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:.1em}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font-family:var(--mono);font-size:12px;padding:9px 13px;border-radius:6px;border:1px solid var(--line-2);background:transparent;cursor:pointer;color:var(--ink-2);transition:border-color .2s,color .2s}
+.chips button:hover,.chips button.on{border-color:var(--tint-1);color:var(--ink)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--tint-1) 0 var(--fill,10%),rgba(255,236,230,.14) var(--fill,10%))}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:rgba(255,236,230,.14)}
+input[type=range]::-moz-range-progress{height:4px;border-radius:2px;background:var(--tint-1)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);margin-top:-7px;box-shadow:0 0 0 4px rgba(255,79,154,.35)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px rgba(255,79,154,.35)}
+.result{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.result b{font-family:var(--display);font-weight:800;font-size:clamp(76px,8vw,132px);line-height:.82;letter-spacing:-.05em;font-variant-numeric:tabular-nums;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em}
+.result span{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(24px,2.4vw,36px);font-variation-settings:"wdth" 110}
+.hint{font-size:15px;color:var(--ink-2);margin:0}
+.stubs{display:flex;flex-wrap:wrap;gap:6px;min-height:30px}
+.stub{display:inline-flex;align-items:center;justify-content:center;width:62px;height:30px;font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--on-ink);background:var(--grad);-webkit-mask:radial-gradient(circle at 0 50%,transparent 5px,#000 5.5px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 5px,#000 5.5px) right/51% 100% no-repeat;mask:radial-gradient(circle at 0 50%,transparent 5px,#000 5.5px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 5px,#000 5.5px) right/51% 100% no-repeat;animation:pop .35s both}
+.stub.more{background:rgba(255,236,230,.16);color:var(--ink)}
+@keyframes pop{from{transform:translateY(6px);opacity:0}}
+.calc-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+#a-tix{width:min(52vh,36vw,500px);aspect-ratio:1;justify-self:center}
+
+/* vault */
+.vault-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(24px,5vw,80px);align-items:center}
+#a-vault{width:min(52vh,34vw,480px);aspect-ratio:1;justify-self:center}
+.v-right{display:flex;flex-direction:column;gap:24px;min-width:0}
+.goal{display:flex;flex-direction:column;gap:14px;padding:22px;border:1px solid var(--line-2);border-radius:10px;background:rgba(11,8,19,.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.goal-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.goal-top b{font-family:var(--display);font-weight:800;font-size:clamp(48px,5vw,80px);line-height:.88;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.vbar{position:relative;height:18px;border-radius:4px;border:1px solid var(--line-2);background:rgba(255,236,230,.04);overflow:hidden}
+.vbar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--grad);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.vbar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),rgba(255,236,230,.16) calc(10% - 1px) 10%)}
+.goal-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.lamp{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.lamp i{width:7px;height:7px;border-radius:50%;background:var(--tint-2);box-shadow:0 0 8px var(--tint-2)}
+.lamp.live i{background:var(--sea);box-shadow:0 0 8px var(--sea)}
+.vstats{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--line)}
+.vstats div{padding:14px 0;display:flex;flex-direction:column;gap:4px}
+.vstats div+div{padding-left:16px;border-left:1px solid var(--line)}
+.vstats dd{margin:0;font-family:var(--mono);font-size:14px}
+.loop{margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.loop>div{position:relative;padding:22px 24px 0 0;display:flex;flex-direction:column;gap:8px}
+.loop>div+div{padding-left:24px;border-left:1px solid var(--line)}
+.loop .n{font-family:var(--mono);font-size:11px;color:var(--tint-1)}
+.loop b{font-family:var(--display);font-weight:800;font-size:clamp(20px,1.7vw,24px);line-height:1.1;font-variation-settings:"wdth" 108}
+.loop p{margin:0;color:var(--ink-2);font-size:15px}
+
+/* board */
+.board{border:1px solid var(--line-2);border-radius:10px;overflow:hidden;background:rgba(11,8,19,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.brow{display:grid;grid-template-columns:96px minmax(0,1.1fr) minmax(0,.7fr) minmax(0,1.2fr) 132px;gap:16px;align-items:center;padding:18px 24px;border-bottom:1px solid var(--line)}
+.brow:last-child{border-bottom:0}
+.brow.head{padding-block:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:rgba(255,236,230,.03);border-bottom-color:var(--line-2)}
+.brow .num{font-family:var(--display);font-weight:800;font-style:italic;font-size:30px;line-height:1;font-variation-settings:"wdth" 110}
+.brow .when{font-size:15.5px}
+.brow .by{font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.brow .win{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brow .win a{color:var(--ink);border-bottom:1px solid var(--line-2)}
+.pill{justify-self:start;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:4px;border:1px solid var(--line-2);color:var(--ink-2);white-space:nowrap}
+.pill.scheduled{border-color:rgba(255,176,74,.6);color:var(--tint-2)}
+.pill.live{border-color:rgba(255,79,154,.6);color:#ffd6e6;background:rgba(255,79,154,.12)}
+.pill.won{border-color:transparent;background:var(--grad);color:var(--on-ink)}
+.brow .lbl{display:none}
+.board-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.45fr);gap:clamp(24px,4vw,56px);align-items:center}
+#a-board{width:min(44vh,26vw,380px);aspect-ratio:1;justify-self:center}
+
+/* token */
+.token-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(24px,5vw,80px);align-items:center}
+.tok-left{display:flex;flex-direction:column;align-items:center;gap:18px}
+#a-tok{width:min(60vh,40vw,540px);aspect-ratio:1}
+.tok-left p{margin:0;text-align:center;font-size:14.5px;color:var(--ink-2);max-width:26rem}
+.tok-right{display:flex;flex-direction:column;gap:26px;min-width:0}
+.facts{margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.facts div{padding:14px 0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.facts div+div{padding-left:16px;border-left:1px solid var(--line)}
+.facts dd{margin:0;font-family:var(--mono);font-size:13.5px;overflow:hidden;text-overflow:ellipsis}
+.flow{display:flex;flex-direction:column;gap:14px}
+.flow-top{display:flex;align-items:baseline;gap:14px}
+.flow-top b{font-family:var(--display);font-weight:800;font-size:52px;line-height:.9;letter-spacing:-.04em}
+.stack{display:flex;height:6px;gap:3px}
+.stack i{display:block;height:100%;border-radius:3px;flex:1;background:var(--grad)}
+.rows div{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line)}
+.rows .sw{width:8px;height:8px;border-radius:50%;align-self:center;background:var(--grad)}
+.rows b{font-weight:500;display:block}
+.rows span span{color:var(--ink-3);font-size:13.5px}
+.rows em{font-family:var(--mono);font-style:normal;font-size:14px}
+.road{margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.road>div{padding:22px 28px 0 0;display:flex;flex-direction:column;gap:12px}
+.road>div+div{padding-left:28px;border-left:1px solid var(--line)}
+.road ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;color:var(--ink-2);font-size:15px}
+.road li{display:flex;gap:10px}
+.road li::before{content:"";flex:none;width:12px;height:1px;background:var(--ink-3);margin-top:.8em}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:56px;align-items:start}
+.faq{border-top:1px solid var(--line-2)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-family:var(--display);font-weight:700;font-size:clamp(19px,1.7vw,23px);letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);font-size:18px;color:var(--ink-3);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg);color:var(--tint-1)}
+.faq details p{margin:0 0 22px;color:var(--ink-2);max-width:44rem}
+
+/* footer */
+footer{padding-block:clamp(120px,15vw,210px) 40px;scroll-margin-top:70px}
+.end-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px;align-items:center}
+.final{font-family:var(--display);font-weight:800;font-size:clamp(60px,9vw,156px);line-height:.84;letter-spacing:-.05em;margin:0 0 40px;font-variation-settings:"wdth" 112}
+#a-end{width:min(60vh,36vw,520px);aspect-ratio:1;justify-self:center}
+.foot{margin-top:96px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.04em;padding-top:20px;border-top:1px solid var(--line)}
+.copy-ok{border-color:var(--tint-1)!important;color:var(--tint-1)!important}
+
+/* card modal */
+.modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(5,3,8,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.modal-box{width:min(680px,100%);max-height:100%;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:18px;background:#120c19;border:1px solid var(--line-2);border-radius:10px}
+.modal-box img{width:100%;display:block;border-radius:6px}
+.modal-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+
+@media (max-width:1080px){
+  .links{display:none}
+  .faq-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+  .callout{display:none}
+}
+@media (max-width:900px){
+  .hero-foot,.plate-head,.token-grid,.end-grid,.tix-grid,.vault-grid{grid-template-columns:minmax(0,1fr)}
+  .buybox{justify-self:start}
+  #a-tok,#a-vault,#a-tix{width:min(78vw,420px)}
+  #a-tix{order:-1}
+  #a-end{width:min(70vw,420px);justify-self:start}
+  .draw-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);gap:10px}
+  .d-right{order:-1;gap:10px}
+  #a-draw{width:min(34vh,64vw)}
+  .d-left{gap:12px;justify-content:flex-start}
+  .d-left h2{font-size:clamp(28px,7vw,44px)}
+  .d-left .eyebrow{display:none}
+  .steps li{padding:7px 0}
+  .steps li b{font-size:19px}
+  .steps li .n{padding-top:4px}
+  .steps li.on p{max-height:4.5em;font-size:13.5px}
+  .loop{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .loop>div:nth-child(3){padding-left:0;border-left:0}
+  .loop>div:nth-child(n+3){border-top:1px solid var(--line);margin-top:22px}
+  .board-grid{grid-template-columns:minmax(0,1fr)}
+  #a-board{order:-1;width:min(60vw,300px)}
+  .brow.head{display:none}
+  .brow{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"num when pill" "num by by" "num win win";gap:4px 16px;padding:16px 18px}
+  .brow .num{grid-area:num;align-self:start}
+  .brow .when{grid-area:when}
+  .brow .by{grid-area:by}
+  .brow .win{grid-area:win}
+  .brow .pill{grid-area:pill;justify-self:end}
+  .brow .lbl{display:inline;color:var(--ink-3)}
+}
+@media (max-width:700px){
+  .stage{height:auto;display:flex;flex-direction:column}
+  .hero .eyebrow,.l1,.l2,#a-hero{position:static;transform:none}
+  .l1{margin-top:18px}
+  .l2{text-align:left}
+  #a-hero{width:min(84vw,44vh);margin:6px auto 2px}
+  .palm.p1{height:58%;left:calc(100% + 4vw)}
+  .palm.p2{height:40%;left:-6vw}
+  .digits div{min-width:0;flex:1}
+  .digits b{font-size:22px}
+  .road{grid-template-columns:minmax(0,1fr)}
+  .road>div+div{padding-left:0;border-left:0;border-top:1px solid var(--line);margin-top:22px}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts div:nth-child(3){padding-left:0;border-left:0}
+  .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+  .vstats{grid-template-columns:minmax(0,1fr)}
+  .vstats div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  #draw{height:300vh}
+  .l3{grid-template-columns:minmax(0,1fr)}
+  .l3 .tag{padding:6px 14px}
+  .loop{grid-template-columns:minmax(0,1fr)}
+  .loop>div,.loop>div+div{padding-left:0;border-left:0}
+  .loop>div+div{border-top:1px solid var(--line);margin-top:22px}
+}
+@media (max-width:520px){
+  .nav .onair{display:none}
+  .xs-hide{display:none}
+  .nav{gap:16px}
+  .brand{font-size:14px}
+  .field input{width:96px;font-size:20px}
+  .crawl .tag{font-size:13px;padding:0 12px}
+  .ca .k{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .l3 .txt p,.callout,.steps li,.steps li p{transition:none}
+  .crawl .track,.onair i,.crawl .tag i{animation:none}
+  .stub{animation:none}
+}
+</style>
+
+</head>
+<body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><defs><linearGradient id="bgr" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff4f9a"/><stop offset="1" stop-color="#ffb04a"/></linearGradient></defs><circle cx="16" cy="14" r="10.5" stroke="rgba(255,236,230,.55)" stroke-width="1.3"/><ellipse cx="16" cy="14" rx="13.6" ry="3.4" stroke="url(#bgr)" stroke-width="1.6"/><circle cx="12.4" cy="18.2" r="3.1" fill="url(#bgr)"/><circle cx="18.7" cy="19.4" r="2.6" fill="#fff4ee"/><circle cx="16.2" cy="8.4" r="2.1" fill="#ffb04a"/><path d="M16 24.6v3.4M11.5 29.4h9" stroke="rgba(255,236,230,.55)" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span data-t="name">GTA 6 Giveaway</span>
+    </a>
+    <nav class="links" aria-label="Sections">
+      <a href="#draw">The draw</a><a href="#tickets">Tickets</a><a href="#vault">Vault</a><a href="#board">Results</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right"><span class="onair"><i></i>On air</span><a class="btn primary small" id="buy-nav" href="https://pump.fun" target="_blank" rel="noopener">Buy <span data-t="tk">$GIVEAWAY</span></a></div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- SEG 01 -->
+  <section class="hero" data-scene="hero">
+    <div class="palms" id="palms" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="stage">
+        <div class="eyebrow bar"><span>Draw #001 · <span data-k="drawDay">Thu 19 Nov</span><span class="xs-hide"> · GTA 6 release day</span></span></div>
+        <h1><span class="l1">Hold.</span><span class="l2">Win <em>GTA 6.</em></span></h1>
+        <div class="anchor drum" id="a-hero">
+          <div class="callout l c1 dim"><span>One ticket</span><b><span data-k="per">0.3 SOL</span> held</b></div>
+          <div class="callout r c3 dim"><span>Draw #001</span><b data-k="drawDay">Thu 19 Nov</b></div>
+          <div class="callout l c2 dim"><span>Prize</span><b>GTA 6 · PS5 or Xbox</b></div>
+          <div class="callout r c4 dim"><span>Ticket cap</span><b>None</b></div>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <p class="lede">Every <strong><span data-k="per">0.3 SOL</span></strong> of <span data-t="tk">$GIVEAWAY</span> you hold is one ticket in the drum. No cap. The first copy of GTA 6 is on the dev and gets drawn on release day. <strong>After that, every <span data-k="price">$79.99</span> in fees buys another copy, and we draw again.</strong></p>
+        <div class="buybox">
+          <div class="clock" id="clock">
+            <span class="label" id="clock-label">Draw #001 starts in</span>
+            <div class="digits"><div><b id="d-d">00</b><span>Days</span></div><div><b id="d-h">00</b><span>Hours</span></div><div><b id="d-m">00</b><span>Min</span></div><div><b id="d-s">00</b><span>Sec</span></div></div>
+          </div>
+          <a class="btn primary" id="buy-hero" href="https://pump.fun" target="_blank" rel="noopener">Buy <span data-t="tk">$GIVEAWAY</span> on pump.fun ↗</a>
+          <div class="ca" id="ca-hero"><span class="k">CA</span><span class="v">Posted here and on X at launch</span><button class="btn small" type="button" hidden>Copy</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="crawl" aria-hidden="true"><span class="tag"><i></i>Live</span><div class="track" id="crawl"></div></div>
+  </section>
+
+  <!-- SEG 02 -->
+  <section class="pin" id="draw" data-scene="draw">
+    <div class="pin-inner wrap">
+      <div class="draw-grid">
+        <div class="d-left">
+          <div class="eyebrow bar">Seg. 02 · How a draw works</div>
+          <h2>Every bag goes in <em>the drum.</em></h2>
+          <ol class="steps" id="steps">
+            <li class="on"><span class="n">01</span><b>Hold</b><p>Every <span data-k="per">0.3 SOL</span> of <span data-t="tk">$GIVEAWAY</span> you hold is one ticket. Here, 1.2 SOL is four pink balls.</p></li>
+            <li><span class="n">02</span><b>Snapshot</b><p>At a time we post on X in advance, every holder’s tickets are counted at the same moment.</p></li>
+            <li><span class="n">03</span><b>Mix</b><p>Every ticket goes in the drum. More tickets, more chances. There is no cap.</p></li>
+            <li><span class="n">04</span><b>Winner</b><p>One ticket comes out. That wallet wins a copy of GTA 6, posted on X and on the results board.</p></li>
+          </ol>
+        </div>
+        <div class="d-right">
+          <div class="anchor drum" id="a-draw"></div>
+          <div class="readouts">
+            <div><span class="label">In the drum</span><b id="r-count">0</b></div>
+            <div><span class="label">Yours</span><b id="r-mine">0</b></div>
+            <div><span class="label">Status</span><b id="r-status">Loading</b></div>
+            <div class="ill"><span class="label">Illustration</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="l3"><span class="tag" id="l3-tag">Step 1 of 4</span><div class="txt" aria-live="polite">
+        <p class="on">You hold 1.2 SOL. That’s four tickets in the drum.</p>
+        <p>Snapshot. Every holder is counted at the same moment.</p>
+        <p>The drum mixes. Every ticket has the same shot.</p>
+        <p><span>One ball comes out. <em class="tint">That wallet wins GTA 6.</em></span></p>
+      </div></div>
+      <div class="meter"><i id="draw-meter"></i></div>
+    </div>
+  </section>
+
+  <!-- SEG 03 -->
+  <section class="plate" id="tickets" data-scene="tickets">
+    <div class="wrap">
+      <div class="plate-head">
+        <div class="eyebrow bar">Seg. 03 · Your tickets</div>
+        <h2><span data-k="per">0.3 SOL</span>. <em>One ticket.</em></h2>
+        <p>Type what your <span data-t="tk">$GIVEAWAY</span> is worth in SOL. There is no cap, so every extra <span data-k="per">0.3 SOL</span> is one more ball in the drum.</p>
+      </div>
+      <div class="tix-grid">
+        <div class="calc">
+          <label class="label" for="sol-in">Your <span data-t="tk">$GIVEAWAY</span>, worth in SOL</label>
+          <div class="calc-row">
+            <div class="field"><input id="sol-in" type="number" min="0" step="0.1" value="1.5" inputmode="decimal" autocomplete="off"><span class="u">SOL</span></div>
+            <div class="chips" id="chips"><button type="button" data-v="0.3">0.3</button><button type="button" data-v="1">1</button><button type="button" data-v="3">3</button><button type="button" data-v="10">10</button><button type="button" data-v="25">25</button></div>
+          </div>
+          <input type="range" id="sol-range" min="0" max="30" step="0.1" value="1.5" aria-label="SOL held">
+          <div class="result"><b id="t-num">5</b><span id="t-word">tickets</span></div>
+          <p class="hint" id="t-hint">—</p>
+          <div class="stubs" id="stubs" aria-hidden="true"></div>
+          <div class="calc-foot"><button class="btn primary small" type="button" id="card-btn">Make my ticket card ↗</button><span class="label" id="t-odds">Odds show here after launch</span></div>
+        </div>
+        <div class="anchor drum" id="a-tix"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEG 04 -->
+  <section class="plate" id="vault" data-scene="vault">
+    <div class="wrap">
+      <div class="vault-grid">
+        <div class="anchor drum" id="a-vault"></div>
+        <div class="v-right">
+          <div class="eyebrow bar">Seg. 04 · The vault</div>
+          <h2>Every <span data-k="price">$79.99</span> is <em>another copy.</em></h2>
+          <p class="sub">After draw #001, all creator fees go to the vault. Each time it reaches the price of one copy, the copy is bought and we draw again.</p>
+          <div class="goal">
+            <div class="goal-top"><b id="v-usd">$0.00</b><span class="label" id="v-of">of $79.99 · copy #2</span></div>
+            <div class="vbar"><i id="v-bar"></i></div>
+            <div class="goal-foot"><span class="lamp" id="v-lamp"><i></i><span>Pre-launch</span></span><span class="label" id="v-upd">Starts filling at launch</span></div>
+          </div>
+          <dl class="vstats">
+            <div><dt class="label">Copies given away</dt><dd id="s-given">0</dd></div>
+            <div><dt class="label">Bought with fees</dt><dd id="s-bought">0</dd></div>
+            <div><dt class="label">Next draw</dt><dd id="s-next">—</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="loop">
+        <div><span class="n">01</span><b>Fees come in</b><p>Every trade of <span data-t="tk">$GIVEAWAY</span> pays creator fees.</p></div>
+        <div><span class="n">02</span><b>The vault fills</b><p>The bar above shows how close the next copy is.</p></div>
+        <div><span class="n">03</span><b>A copy is bought</b><p>At <span data-k="price">$79.99</span>, the vault buys one copy for the winner’s console and store region.</p></div>
+        <div><span class="n">04</span><b>We draw again</b><p>New snapshot, new draw, new winner. Then the loop starts over.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEG 05 -->
+  <section class="plate" id="board" data-scene="board">
+    <div class="wrap">
+      <div class="plate-head">
+        <div class="eyebrow bar">Seg. 05 · Results</div>
+        <h2>Every draw on <em>the board.</em></h2>
+        <p>Each draw, how the copy was paid for and the winning wallet. The same results are posted on X.</p>
+      </div>
+      <div class="board-grid">
+        <div>
+          <div class="board" id="board-tbl" role="table" aria-label="Draw results"></div>
+          <p class="note">We never DM winners first. A message saying you won is a scam. Winners are only posted here and on our X.</p>
+        </div>
+        <div class="anchor drum" id="a-board"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEG 06 -->
+  <section class="plate" id="token" data-scene="token">
+    <div class="wrap">
+      <div class="token-grid">
+        <div class="tok-left">
+          <div class="anchor drum" id="a-tok"></div>
+          <p>One drum, every holder’s tickets, and a new copy every time the vault fills.</p>
+        </div>
+        <div class="tok-right">
+          <div class="eyebrow bar">Seg. 06 · The token</div>
+          <h2>The fees buy <em>the games.</em></h2>
+          <p class="sub" style="margin:0">The dev pays for copy #1. Every copy after that is paid with creator fees from <span data-t="tk">$GIVEAWAY</span>.</p>
+          <dl class="facts">
+            <div><dt class="label">Ticker</dt><dd data-t="tk">$GIVEAWAY</dd></div>
+            <div><dt class="label">Chain</dt><dd>Solana</dd></div>
+            <div><dt class="label">Launch</dt><dd>pump.fun</dd></div>
+            <div><dt class="label">Supply</dt><dd>1,000,000,000</dd></div>
+          </dl>
+          <div class="ca" id="ca-token"><span class="k">CA</span><span class="v">Posted here and on X at launch</span><button class="btn small" type="button" hidden>Copy</button></div>
+          <div class="flow">
+            <div class="flow-top"><b>$1.00</b><span class="label">of creator fees</span></div>
+            <div class="stack"><i></i></div>
+            <div class="rows"><div><span class="sw"></span><span><b>Copies of GTA 6</b><span>Bought for winners, one every <span data-k="price">$79.99</span></span></span><em>100¢</em></div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px" id="token-links">
+            <a class="btn primary" id="buy-token" href="https://pump.fun" target="_blank" rel="noopener">Buy on pump.fun ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="road">
+        <div><span class="label">At launch</span><ul><li>The ticket counter on this page</li><li>Draw #001 on release day, paid by the dev</li></ul></div>
+        <div><span class="label">Every <span data-k="price">$79.99</span></span><ul><li>The vault buys another copy</li><li>New snapshot, new draw</li></ul></div>
+        <div><span class="label">Every draw</span><ul><li>Winning wallet posted on X</li><li>Added to the results board here</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="plate" id="faq" data-scene="faq">
+    <div class="wrap faq-grid">
+      <div><div class="eyebrow bar" style="margin-bottom:20px">Questions</div><h2>Before you <em>ask.</em></h2></div>
+      <div class="faq">
+        <details><summary>What exactly do I win?</summary><p>A copy of GTA 6, Standard Edition, for PS5 or Xbox Series X|S, for your own store region. Rockstar has not announced a PC version, so console only for now.</p></details>
+        <details><summary>How do tickets work?</summary><p>Every <span data-k="per">0.3 SOL</span> worth of <span data-t="tk">$GIVEAWAY</span> in your wallet at the snapshot is one ticket. There is no cap. 3 SOL is 10 tickets, 30 SOL is 100.</p></details>
+        <details><summary>When is the snapshot?</summary><p>We post the snapshot time on X before every draw. Hold through it and your tickets are in.</p></details>
+        <details><summary>How is the winner picked?</summary><p>At random from all tickets, so more tickets means more chances. The winning wallet is posted on X and on the results board. The winner proves the wallet is theirs and picks PS5 or Xbox.</p></details>
+        <details><summary>Who can’t win?</summary><p>The dev wallet, the bonding curve and pool addresses never get tickets.</p></details>
+        <details><summary>Someone DMed me saying I won.</summary><p>That’s a scam. We never DM first. Winners are only posted on our X and on this page.</p></details>
+        <details><summary>Is this connected to Rockstar?</summary><p>No. GTA 6 is the prize, bought at the normal store price. We are not affiliated with Rockstar Games or Take-Two Interactive.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-scene="end" id="end">
+  <div class="wrap">
+    <div class="end-grid">
+      <div>
+        <p class="final">Hold. Win. <em>Play.</em></p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px" id="foot-links">
+          <a class="btn primary" id="buy-foot" href="https://pump.fun" target="_blank" rel="noopener">Buy <span data-t="tk">$GIVEAWAY</span> ↗</a>
+          <a class="btn" href="#tickets">Count my tickets</a>
+        </div>
+        <div class="ca" id="ca-foot" style="margin-top:16px;max-width:460px"><span class="k">CA</span><span class="v">Posted here and on X at launch</span><button class="btn small" type="button" hidden>Copy</button></div>
+      </div>
+      <div class="anchor drum" id="a-end"></div>
+    </div>
+    <div class="foot"><span><span data-t="name">GTA 6 Giveaway</span> · <span data-t="tk">$GIVEAWAY</span></span><span>Not affiliated with Rockstar Games or Take-Two Interactive. Grand Theft Auto is their trademark. Not financial advice.</span></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Ticket card">
+    <div class="modal-row"><span class="label">Your ticket card</span><button class="btn small" type="button" id="modal-close">Close</button></div>
+    <img id="card-img" alt="Ticket card showing how many tickets you hold">
+    <div class="modal-row">
+      <span class="label" style="text-transform:none;letter-spacing:.02em">Right-click or long-press the image to save it.</span>
+      <div style="display:flex;gap:8px"><button class="btn small" type="button" id="card-copy">Copy text</button><a class="btn primary small" id="card-dl" download="tickets.png" href="#">Save</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Edit these ===== */
+const CONFIG = {
+  name: "GTA 6 Giveaway",
+  ticker: "GIVEAWAY",          // without the $
+  ca: "",                      // paste the mint address after launch
+  x: "",                       // e.g. "https://x.com/yourhandle"
+  dexscreener: "",             // optional
+  site: "",                    // e.g. "gta6giveaway.fun", printed on ticket cards
+  solPerTicket: 0.3,
+  copyPrice: 79.99,            // USD, GTA 6 Standard Edition
+  firstDraw: "2026-11-19T20:00:00+01:00",
+  totalTickets: 0,             // tickets in the drum at the last snapshot (0 hides odds)
+  vault: { usd: 0, copiesBought: 0, updated: "" },
+  draws: [
+    { n: 1, when: "2026-11-19T20:00:00+01:00", paidBy: "Dev", winner: "", status: "scheduled" },
+    { n: 2, when: "", paidBy: "Fees", winner: "", status: "waiting" }
+  ]
+};
+
+/* ===== Basics ===== */
+const $ = id => document.getElementById(id);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const sstep = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isAddr = s => /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(s);
+const short = s => s.length > 12 ? s.slice(0, 4) + "…" + s.slice(-4) : s;
+const TK = "$" + CONFIG.ticker;
+const money = v => "$" + Number(v || 0).toFixed(2);
+const fmtDay = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" }); };
+const PER = CONFIG.solPerTicket;
+const TOKEN_ADDR = CONFIG.ca && isAddr(CONFIG.ca) ? CONFIG.ca : null;
+
+document.querySelectorAll('[data-t="tk"]').forEach(el => el.textContent = TK);
+document.querySelectorAll('[data-t="name"]').forEach(el => el.textContent = CONFIG.name);
+document.querySelectorAll('[data-k="per"]').forEach(el => el.textContent = PER + " SOL");
+document.querySelectorAll('[data-k="price"]').forEach(el => el.textContent = money(CONFIG.copyPrice));
+document.querySelectorAll('[data-k="drawDay"]').forEach(el => el.textContent = fmtDay(CONFIG.firstDraw));
+document.title = `${CONFIG.name} · ${TK}`;
+
+/* ===== Palms (generated silhouettes) ===== */
+function palmSVG(seed, lean, fronds){
+  let s = seed; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const bx = 450, by = 1000, top = [bx + lean * 430, 250];
+  const c1 = [bx + lean * 30, 720], c2 = [bx + lean * 330, 420];
+  const bez = t => { const u = 1 - t; return [u*u*u*bx + 3*u*u*t*c1[0] + 3*u*t*t*c2[0] + t*t*t*top[0], u*u*u*by + 3*u*u*t*c1[1] + 3*u*t*t*c2[1] + t*t*t*top[1]]; };
+  const f = v => v.toFixed(1);
+  const poly = pts => "M" + pts.map(p => f(p[0]) + " " + f(p[1])).join("L") + "Z";
+  const L = [], R = [];
+  for (let i = 0; i <= 48; i++){
+    const t = i / 48, p = bez(t), a = bez(Math.min(1, t + .01)), b = bez(Math.max(0, t - .01));
+    const dx = a[0] - b[0], dy = a[1] - b[1], len = Math.hypot(dx, dy) || 1, nx = -dy / len, ny = dx / len;
+    const w = lerp(20, 8, t) * (1 + .12 * Math.max(0, Math.sin(t * 120)));
+    L.push([p[0] + nx * w, p[1] + ny * w]); R.push([p[0] - nx * w, p[1] - ny * w]);
+  }
+  let d = poly(L.concat(R.reverse()));
+  for (let k = 0; k < fronds; k++){
+    const a = -Math.PI * (.02 + .96 * k / (fronds - 1)) + (rnd() - .5) * .2;
+    const dir = [Math.cos(a), Math.sin(a)], len = 240 + rnd() * 120, droop = len * (.55 + rnd() * .3);
+    const p0 = top, p1 = [top[0] + dir[0] * len * .58, top[1] + dir[1] * len * .62 - len * .14];
+    const p2 = [top[0] + dir[0] * len, top[1] + dir[1] * len * .4 + droop * (.3 + .7 * Math.abs(dir[0]))];
+    const q = t => { const u = 1 - t; return [u*u*p0[0] + 2*u*t*p1[0] + t*t*p2[0], u*u*p0[1] + 2*u*t*p1[1] + t*t*p2[1]]; };
+    const A = [], B = [];
+    for (let i = 0; i <= 24; i++){
+      const t = i / 24, p = q(t), pa = q(Math.min(1, t + .01)), pb = q(Math.max(0, t - .01));
+      const dx = pa[0] - pb[0], dy = pa[1] - pb[1], ln = Math.hypot(dx, dy) || 1, tx = dx / ln, ty = dy / ln, nx = -ty, ny = tx;
+      const w = lerp(4.5, .6, t);
+      A.push([p[0] + nx * w, p[1] + ny * w]); B.push([p[0] - nx * w, p[1] - ny * w]);
+      if (i > 1 && i < 24){
+        const reach = (16 + 58 * Math.pow(Math.sin(Math.PI * t), .7)) * (.82 + rnd() * .36);
+        for (const side of [1, -1]){
+          let lx = nx * side * .78 + tx * .5, ly = ny * side * .78 + ty * .5 + .55;
+          const ll = Math.hypot(lx, ly); lx /= ll; ly /= ll;
+          const bw = 3.2;
+          d += poly([[p[0] - tx * bw, p[1] - ty * bw], [p[0] + tx * bw, p[1] + ty * bw], [p[0] + lx * reach, p[1] + ly * reach]]);
+        }
+      }
+    }
+    d += poly(A.concat(B.reverse()));
+  }
+  const nuts = [[-15, 16], [11, 20], [-2, 33]].map(o => `<circle cx="${f(top[0] + o[0])}" cy="${f(top[1] + o[1])}" r="14"/>`).join("");
+  return `<svg viewBox="-150 0 1200 1000" preserveAspectRatio="xMidYMax meet"><path d="${d}"/>${nuts}</svg>`;
+}
+(function palms(){
+  const host = $("palms");
+  [["p1", 7, .16, 11], ["p2", 31, -.2, 10]].forEach(([cls, seed, lean, n]) => {
+    const w = document.createElement("div"); w.innerHTML = palmSVG(seed, lean, n);
+    const svg = w.firstChild; svg.setAttribute("class", "palm " + cls); host.appendChild(svg);
+  });
+})();
+
+/* ===== Crawl ===== */
+(function crawl(){
+  const day = fmtDay(CONFIG.firstDraw);
+  const items = [`${PER} SOL held = 1 ticket`, "No cap on tickets", `Draw #001 · ${day} · GTA 6 release day`, "Copy #1 paid by the dev",
+    `Every ${money(CONFIG.copyPrice)} in fees = one more copy`, "PS5 or Xbox Series X|S", "Winners posted on X", "We never DM first"];
+  const html = items.map(t => `<span>${t}</span>`).join("");
+  $("crawl").innerHTML = html + html;
+})();
+
+/* ===== Countdown ===== */
+function tick(){
+  const t = new Date(CONFIG.firstDraw).getTime();
+  if (isNaN(t)){ $("clock").hidden = true; return; }
+  let ms = t - Date.now();
+  const first = CONFIG.draws[0] || {};
+  if (ms <= 0){
+    ms = 0;
+    $("clock-label").textContent = first.status === "won" ? "Draw #001 is done · next draw when the vault fills" : "Draw #001 is happening now";
+  }
+  const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, s = Math.floor(ms / 1e3) % 60;
+  const pad = n => String(n).padStart(2, "0");
+  $("d-d").textContent = pad(d); $("d-h").textContent = pad(h); $("d-m").textContent = pad(m); $("d-s").textContent = pad(s);
+}
+tick(); setInterval(tick, 1000);
+
+/* ===== Tickets ===== */
+let ticketsNow = 5;
+const ticketsFor = sol => Math.floor(sol / PER + 1e-9);
+function renderTickets(from){
+  const inEl = $("sol-in"), rg = $("sol-range");
+  let sol = parseFloat(inEl.value); if (!isFinite(sol) || sol < 0) sol = 0;
+  if (from !== "range") rg.value = Math.min(30, sol);
+  rg.style.setProperty("--fill", (Math.min(30, sol) / 30 * 100).toFixed(1) + "%");
+  const t = ticketsFor(sol); ticketsNow = t;
+  $("t-num").textContent = t.toLocaleString("en-US");
+  $("t-word").textContent = t === 1 ? "ticket" : "tickets";
+  const nextAt = (t + 1) * PER, need = nextAt - sol;
+  $("t-hint").textContent = t === 0
+    ? `Hold ${need.toFixed(2)} SOL more of ${TK} for your first ticket.`
+    : `${need.toFixed(2)} SOL more makes it ${(t + 1).toLocaleString("en-US")}. No cap, so it keeps going.`;
+  const max = 24, stubs = $("stubs"); let html = "";
+  for (let i = 0; i < Math.min(t, max); i++) html += `<span class="stub">#${String(i + 1).padStart(3, "0")}</span>`;
+  if (t > max) html += `<span class="stub more">+${(t - max).toLocaleString("en-US")}</span>`;
+  stubs.innerHTML = html;
+  document.querySelectorAll("#chips button").forEach(b => b.classList.toggle("on", parseFloat(b.dataset.v) === sol));
+  if (CONFIG.totalTickets > 0 && t > 0){
+    const pct = t / (CONFIG.totalTickets + t) * 100;
+    $("t-odds").textContent = `≈ ${pct < .01 ? "<0.01" : pct.toFixed(pct < 1 ? 2 : 1)}% per draw, at the last snapshot`;
+  }
+  $("card-btn").disabled = t === 0;
+}
+$("sol-in").addEventListener("input", () => renderTickets("input"));
+$("sol-range").addEventListener("input", e => { $("sol-in").value = (+e.target.value).toFixed(1).replace(/\.0$/, ""); renderTickets("range"); });
+document.querySelectorAll("#chips button").forEach(b => b.addEventListener("click", () => { $("sol-in").value = b.dataset.v; renderTickets("chip"); }));
+
+/* ===== Vault + board ===== */
+let vaultPct = 0;
+function renderVault(){
+  const v = CONFIG.vault || {}, price = CONFIG.copyPrice;
+  vaultPct = clamp((v.usd || 0) / price, 0, 1);
+  $("v-usd").textContent = money(v.usd);
+  $("v-of").textContent = `of ${money(price)} · copy #${(v.copiesBought || 0) + 2}`;
+  requestAnimationFrame(() => $("v-bar").style.width = (vaultPct * 100).toFixed(1) + "%");
+  const lamp = $("v-lamp");
+  if (TOKEN_ADDR){ lamp.classList.add("live"); lamp.querySelector("span").textContent = "Updated by the team"; $("v-upd").textContent = v.updated ? "Last update " + v.updated : ""; }
+  const given = CONFIG.draws.filter(d => d.status === "won").length;
+  $("s-given").textContent = given; $("s-bought").textContent = v.copiesBought || 0;
+  const next = CONFIG.draws.find(d => d.status !== "won");
+  $("s-next").textContent = next ? (next.when ? fmtDay(next.when) : "When the vault fills") : "When the vault fills";
+}
+function renderBoard(){
+  const rows = CONFIG.draws.map(d => {
+    const when = d.when ? fmtDay(d.when) : "When the vault hits " + money(CONFIG.copyPrice);
+    const win = d.winner ? (isAddr(d.winner) ? `<a href="https://solscan.io/account/${d.winner}" target="_blank" rel="noopener">${short(d.winner)}</a>` : d.winner) : "—";
+    const label = { scheduled: "Scheduled", waiting: "Waiting", live: "Drawing", won: "Won" }[d.status] || d.status;
+    return `<div class="brow" role="row"><span class="num" role="cell">#${String(d.n).padStart(3, "0")}</span><span class="when" role="cell">${when}</span><span class="by" role="cell"><span class="lbl">Paid by </span>${d.paidBy === "Dev" ? "The dev" : "Fees"}</span><span class="win" role="cell"><span class="lbl">Winner </span>${win}</span><span class="pill ${d.status}" role="cell">${label}</span></div>`;
+  }).join("");
+  $("board-tbl").innerHTML = `<div class="brow head" role="row"><span role="columnheader">Draw</span><span role="columnheader">When</span><span role="columnheader">Paid by</span><span role="columnheader">Winning wallet</span><span role="columnheader">Status</span></div>` + rows;
+}
+
+/* ===== Lottery drum: shader ===== */
+const FRAG = `
+precision highp float;
+uniform vec2 uRes; uniform float uTime;
+uniform vec4 uPA; uniform vec4 uRot;
+uniform vec4 uBall[16];
+uniform float uShell; uniform float uRingsOn; uniform float uScan;
+uniform float uSun; uniform float uRings; uniform float uArc;
+uniform vec4 uWin;
+uniform vec3 uTintA; uniform vec3 uTintB;
+#define CAMZ 6.0
+#define TANH 0.2679492
+#define BR 0.16
+mat2 rot(float a){ float c=cos(a), s=sin(a); return mat2(c,s,-s,c); }
+float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
+float smin(float a,float b,float k){ float h=clamp(.5+.5*(b-a)/k,0.,1.); return mix(b,a,h)-k*h*(1.-h); }
+float sdTorus(vec3 p, vec2 t){ vec2 q=vec2(length(p.xz)-t.x,p.y); return length(q)-t.y; }
+float sdCyl(vec3 p, float h, float r){ vec2 d=abs(vec2(length(p.xz),p.y))-vec2(r,h); return min(max(d.x,d.y),0.)+length(max(d,0.)); }
+vec3 toObj(vec3 p){ vec3 q=(p-uPA.xyz)/uPA.w; q.yz*=rot(-.16+uRot.w); q.xz*=rot(uRot.x+uRot.z); return q; }
+float frameD(vec3 q){
+  float ro=max(uRingsOn,.001);
+  float d=sdTorus(q, vec2(1.075*ro,.028*ro));
+  vec3 m=q; m.xz*=rot(uRot.y);
+  d=min(d, sdTorus(vec3(m.x,m.z,m.y), vec2(1.13*ro,.02*ro)));
+  vec3 c=q-vec3(0.,1.11,0.);
+  float tube=max(sdCyl(c,.17,.215), -sdCyl(c,.3,.178));
+  tube=min(tube, sdTorus(q-vec3(0.,1.285,0.), vec2(.205,.03)));
+  d=min(d,tube);
+  d=min(d, sdTorus(q-vec3(0.,-.985,0.), vec2(.17,.035)));
+  d=smin(d, sdCyl(q-vec3(0.,-1.14,0.), .14, .085), .05);
+  d=smin(d, sdCyl(q-vec3(0.,-1.31,0.), .035, .5)-.02, .08);
+  return d;
+}
+vec2 map(vec3 p){
+  vec3 q=toObj(p);
+  float d=frameD(q), m=0.;
+  for(int i=0;i<16;i++){
+    vec4 b=uBall[i];
+    if(b.w<0.) continue;
+    float r=b.w>3.5?BR*1.15:BR;
+    float db=length(q-b.xyz)-r;
+    if(db<d){ d=db; m=b.w; }
+  }
+  return vec2(d*uPA.w, m);
+}
+vec3 calcN(vec3 p, float s){ vec2 e=vec2(.0011,-.0011)*max(s,.4); return normalize(e.xyy*map(p+e.xyy).x+e.yyx*map(p+e.yyx).x+e.yxy*map(p+e.yxy).x+e.xxx*map(p+e.xxx).x); }
+float calcAO(vec3 p, vec3 n, float s){ float o=0., w=1.; for(int i=1;i<=4;i++){ float h=(.012+.04*float(i*i))*s; o+=(h-map(p+n*h).x)*w; w*=.62; } return clamp(1.-1.8*o/s,0.,1.); }
+vec3 env(vec3 r){
+  float y=r.y;
+  vec3 sky=mix(vec3(1.,.5,.32), vec3(.8,.26,.55), smoothstep(.02,.3,y));
+  sky=mix(sky, vec3(.17,.10,.34), smoothstep(.26,.72,y));
+  sky=mix(sky, vec3(.05,.04,.12), smoothstep(.72,1.,y));
+  vec3 sea=mix(vec3(.42,.16,.30), vec3(.03,.03,.07), smoothstep(-.02,-.45,y));
+  vec3 c=mix(sea, sky, smoothstep(-.015,.015,y));
+  c+=vec3(1.,.62,.42)*.7*exp(-abs(y)*38.);
+  vec3 sun=normalize(vec3(.42,.10,.9));
+  float sd=dot(r,sun);
+  c+=vec3(1.,.82,.55)*3.2*smoothstep(.992,.998,sd)+vec3(1.,.5,.35)*.45*pow(max(sd,0.),10.);
+  c+=vec3(1.,.96,.98)*1.5*smoothstep(.94,.99,dot(r,normalize(vec3(-.4,.86,.3))));
+  c+=uTintA*1.3*smoothstep(.955,.995,dot(r,normalize(vec3(-.9,.15,.25))));
+  c+=vec3(.3,.92,.85)*1.*smoothstep(.965,.996,dot(r,normalize(vec3(.92,-.12,-.1))));
+  return c;
+}
+vec3 aces(vec3 x){ return clamp((x*(2.51*x+.03))/(x*(2.43*x+.59)+.14),0.,1.); }
+vec3 pastel(float h){ return .74+.26*cos(6.2832*(h+vec3(0.,.33,.67))); }
+vec3 shade(vec3 p, vec3 rd, float m){
+  float s=uPA.w; vec3 n=calcN(p,s);
+  float ndv=clamp(dot(n,-rd),0.,1.), fr=pow(1.-ndv,5.);
+  vec3 R=reflect(rd,n), e=env(R);
+  vec3 L=normalize(vec3(-.35,.8,.55));
+  float lam=clamp(dot(n,L),0.,1.), ao=calcAO(p,n,s), sp=pow(max(dot(R,L),0.),70.);
+  vec3 col;
+  if(m<.5){
+    col=e*vec3(1.,.9,.92)+uTintA*fr*.35;
+    col*=mix(.55,1.,ao);
+  } else if(m<3.5){
+    vec3 base=m<2.5?pastel(m-1.):vec3(1.,.24,.58);
+    vec3 dif=base*(.16+.84*lam)*ao;
+    dif+=base*vec3(1.,.55,.4)*.22*clamp(.5-n.y*.5,0.,1.)*ao;
+    col=dif+e*(.05+.75*fr)+vec3(1.)*sp*1.6;
+  } else {
+    vec3 gold=vec3(1.,.72,.28);
+    col=e*gold*.85+gold*(.16+.5*lam)*ao+gold*fr*.6+vec3(1.,.92,.7)*sp*2.2+gold*uWin.w*.2;
+    col*=mix(.6,1.,ao);
+  }
+  if(uScan>-4.){ vec3 q=toObj(p); col+=vec3(.55,1.,.92)*exp(-pow((q.y-uScan)*9.,2.))*1.4; }
+  return pow(aces(col*1.02),vec3(1./2.2));
+}
+vec2 sph(vec3 ro, vec3 rd, vec3 c, float r){ vec3 oc=ro-c; float b=dot(oc,rd); float h=b*b-dot(oc,oc)+r*r; if(h<0.) return vec2(1e9,-1e9); h=sqrt(h); return vec2(-b-h,-b+h); }
+vec3 sunset(vec2 uv){
+  if(uSun<.001||uPA.w<.001) return vec3(0.);
+  float k=1./(CAMZ*TANH), rU=uPA.w*k; vec2 c=uPA.xy*k;
+  float hy=c.y-.46*rU, px=2./uRes.y, dx=uv.x-c.x;
+  vec3 col=vec3(0.);
+  float above=smoothstep(hy-px,hy+px,uv.y);
+  float hg=exp(-max(uv.y-hy,0.)/(1.2*rU));
+  col+=mix(vec3(.5,.1,.34),vec3(.95,.4,.22),exp(-abs(dx)/(2.4*rU)))*.32*hg*above;
+  vec2 sc=c+vec2(0.,.04*rU);
+  float d=length(uv-sc), Rs=1.3*rU;
+  float disk=1.-smoothstep(Rs-px*1.5,Rs+px*1.5,d);
+  float vy=clamp((uv.y-hy)/(Rs*1.6),0.,1.);
+  vec3 sunc=mix(vec3(1.,.7,.36),vec3(1.,.34,.56),vy);
+  col+=sunc*disk*.6*above;
+  col+=sunc*.16*exp(-max(d-Rs,0.)/(.5*rU))*above;
+  float depth=max(hy-uv.y,0.)/rU;
+  float w=1.05*rU*(1.+depth*.9);
+  float rip=.5+.5*sin(uv.y/rU*70.+uTime*1.6+sin(dx/rU*9.+uTime)*1.5);
+  col+=vec3(1.,.42,.42)*smoothstep(w,0.,abs(dx))*rip*.24*exp(-depth*.85)*(1.-above);
+  col+=vec3(1.,.55,.45)*.4*exp(-abs(uv.y-hy)/(px*1.2))*exp(-abs(dx)/(3.*rU));
+  return col*uSun;
+}
+vec3 dial(vec3 ro, vec3 rd){
+  float tp=(uPA.z-ro.z)/rd.z; vec3 pp=ro+rd*tp;
+  vec2 v=(pp.xy-uPA.xy)/uPA.w; float r=length(v);
+  float an=atan(v.x,v.y); float a=(an<0.?an+6.2832:an)/6.2832;
+  float px=2.*TANH*CAMZ/uRes.y/uPA.w;
+  float R0=1.62;
+  float l=(1.-smoothstep(0.,px*1.1,abs(r-R0)))*.55;
+  float tk=a*60., darc=abs(fract(tk+.5)-.5)/60.*6.2832*r;
+  float major=step(abs(fract(tk/5.+.5)-.5)*5.,.5);
+  l+=(1.-smoothstep(0.,px*1.1,darc))*step(R0,r)*step(r,R0+.05+major*.06)*.9;
+  vec3 c=vec3(1.,.88,.9)*.12*l;
+  float arcm=(1.-smoothstep(.012,.012+px*1.4,abs(r-R0)))*step(a,uArc);
+  c+=mix(uTintA,uTintB,a)*1.1*arcm;
+  float hd=length(v-vec2(sin(uArc*6.2832),cos(uArc*6.2832))*R0);
+  c+=mix(uTintA,uTintB,uArc)*(1.-smoothstep(px*1.5,px*4.,hd))*step(.002,uArc)*1.4;
+  return c*uRings;
+}
+vec3 bg(vec2 uv, vec3 ro, vec3 rd){
+  vec3 c=mix(vec3(.052,.034,.074),vec3(.032,.025,.05),clamp(uv.y*.5+.5,0.,1.));
+  float t=uTime*.04;
+  vec2 c1=vec2(sin(t*1.3)*1.,cos(t*1.1)*.45+.25), c2=vec2(cos(t*.9)*1.1,sin(t*1.7)*.5-.35);
+  c+=uTintA*.05*exp(-dot(uv-c1,uv-c1)*1.2);
+  c+=uTintB*.04*exp(-dot(uv-c2,uv-c2));
+  c+=vec3(.9,.3,.3)*.035*exp(-(uv.y+1.)*1.6);
+  c+=sunset(uv);
+  if(uPA.w>.001){
+    vec2 cc=uPA.xy/(CAMZ*TANH); float dd=length(uv-cc)/(uPA.w/(CAMZ*TANH));
+    c+=uTintA*.07*exp(-max(dd-1.,0.)*1.4)*(1.-uSun);
+    if(uRings>.001) c+=dial(ro,rd);
+  }
+  c*=1.-.3*dot(uv*.5,uv*.5);
+  return c;
+}
+vec3 glass(vec3 col, vec3 ro, vec3 rd, float tHit){
+  vec2 sh=sph(ro,rd,uPA.xyz,uPA.w);
+  if(sh.y<=sh.x||sh.x<0.||sh.x>tHit) return col;
+  vec3 oc=uPA.xyz-ro; float al=dot(oc,rd); float dperp=length(ro+rd*al-uPA.xyz);
+  float px=2.*TANH/uRes.y;
+  float edge=1.-smoothstep(uPA.w-px*sh.x*1.5,uPA.w,dperp);
+  vec3 ps=ro+rd*sh.x, n=normalize(ps-uPA.xyz);
+  float ndv=clamp(dot(n,-rd),0.,1.), fr=.035+.965*pow(1.-ndv,5.);
+  vec3 R=reflect(rd,n);
+  vec3 g=env(R)*fr*.9;
+  g+=vec3(1.)*(pow(max(dot(R,normalize(vec3(-.4,.86,.3))),0.),260.)*1.6+pow(max(dot(R,normalize(vec3(.42,.10,.9))),0.),400.)*1.2);
+  if(uScan>-4.){ vec3 q=toObj(ps); g+=vec3(.55,1.,.92)*exp(-pow((q.y-uScan)*14.,2.))*.6; }
+  if(tHit>1e8){ vec3 pb=ro+rd*sh.y, nb=normalize(uPA.xyz-pb); float fr2=pow(1.-clamp(dot(nb,-rd),0.,1.),4.); g+=env(reflect(rd,nb))*fr2*.22; }
+  vec3 gd=pow(aces(g),vec3(1./2.2));
+  float a=uShell*edge;
+  col=mix(col,col*vec3(.96,.93,.98),.35*a);
+  return 1.-(1.-col)*(1.-gd*a);
+}
+void main(){
+  vec2 fc=gl_FragCoord.xy, uv=(fc*2.-uRes)/uRes.y;
+  vec3 ro=vec3(0.,0.,CAMZ), rd=normalize(vec3(uv*TANH,-1.));
+  vec3 col=bg(uv,ro,rd);
+  if(uPA.w>.001){
+    vec2 s=sph(ro,rd,uPA.xyz,1.95*uPA.w);
+    if(s.y>s.x){
+      float t=max(s.x,0.), dmin=1e9, tdm=t, hit=0., px=2.*TANH/uRes.y, tHit=1e9;
+      for(int i=0;i<120;i++){ vec2 h=map(ro+rd*t); if(h.x<dmin){dmin=h.x;tdm=t;} if(h.x<.0006*t){hit=1.;break;} t+=h.x*.85; if(t>s.y) break; }
+      float cov=hit>.5?1.:1.-smoothstep(0.,px*tdm*1.25,dmin);
+      if(cov>.001){ float ts=hit>.5?t:tdm; vec3 p=ro+rd*ts; col=mix(col,shade(p,rd,map(p).y),cov); if(cov>.5) tHit=ts; }
+      if(uShell>.001) col=glass(col,ro,rd,tHit);
+    }
+  }
+  if(uWin.w>.001){
+    vec2 wc=uWin.xy/(CAMZ*TANH); float d=length(uv-wc)/(uPA.w/(CAMZ*TANH)+1e-4);
+    col+=vec3(1.,.72,.35)*uWin.w*(.22*exp(-d*d*16.)+.07*exp(-d*3.));
+  }
+  col+=(hash(fc+fract(uTime*7.))-.5)/160.;
+  gl_FragColor=vec4(col,1.);
+}`;
+
+class Studio {
+  constructor(canvas, keep){
+    const gl = canvas.getContext("webgl", { antialias: false, alpha: false, depth: false, stencil: false, preserveDrawingBuffer: !!keep, powerPreference: "high-performance" });
+    if (!gl) throw new Error("WebGL unavailable");
+    this.gl = gl; this.canvas = canvas;
+    const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+    const p = gl.createProgram();
+    gl.attachShader(p, sh(gl.VERTEX_SHADER, "attribute vec2 aP; void main(){ gl_Position=vec4(aP,0.,1.); }"));
+    gl.attachShader(p, sh(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+    gl.useProgram(p);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(p, "aP"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    this.u = {};
+    ["uRes","uTime","uPA","uRot","uShell","uRingsOn","uScan","uSun","uRings","uArc","uWin","uTintA","uTintB"].forEach(n => this.u[n] = gl.getUniformLocation(p, n));
+    this.u.uBall = gl.getUniformLocation(p, "uBall[0]");
+  }
+  draw(S){
+    const gl = this.gl, u = this.u, w = this.canvas.width, h = this.canvas.height;
+    gl.viewport(0, 0, w, h);
+    gl.uniform2f(u.uRes, w, h); gl.uniform1f(u.uTime, S.time);
+    gl.uniform4fv(u.uPA, S.PA); gl.uniform4fv(u.uRot, S.rot); gl.uniform4fv(u.uBall, S.balls);
+    gl.uniform1f(u.uShell, S.shell); gl.uniform1f(u.uRingsOn, S.ringsOn); gl.uniform1f(u.uScan, S.scan);
+    gl.uniform1f(u.uSun, S.sun); gl.uniform1f(u.uRings, S.rings); gl.uniform1f(u.uArc, S.arc);
+    gl.uniform4fv(u.uWin, S.win); gl.uniform3fv(u.uTintA, S.tintA); gl.uniform3fv(u.uTintB, S.tintB);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+}
+
+/* ===== Ball physics (drum space, gravity is -y) ===== */
+const MAXB = 16, BR = .16, RIN = .955 - BR;
+const balls = Array.from({ length: MAXB }, (_, i) => ({ p: [0, -RIN, 0], v: [0, 0, 0], on: false, hue: (i * .381966) % 1, seed: Math.random() * 10, mine: false, gold: false, h0: null, holdW: 0 }));
+function spawn(b){
+  b.on = true; b.h0 = null; b.holdW = 0; b.gold = false;
+  b.p = [(Math.random() - .5) * .12, RIN - .02, (Math.random() - .5) * .12];
+  b.v = [(Math.random() - .5) * 1.4, -1.2, (Math.random() - .5) * 1.4];
+}
+function physics(dt, jets, time){
+  const sub = 3, h = dt / sub;
+  for (let s = 0; s < sub; s++){
+    for (const b of balls){
+      if (!b.on || b.h0) continue;
+      const v = b.v, p = b.p;
+      v[1] -= 7.5 * h;
+      if (jets > .001){
+        const low = p[1] < .25 ? 1 : .2;
+        v[1] += jets * h * (10 + 8 * Math.max(0, -p[1])) * low;
+        const tt = time * 1.9 + b.seed * 7;
+        v[0] += jets * h * 13 * Math.sin(tt * 1.3 + p[2] * 5);
+        v[2] += jets * h * 13 * Math.cos(tt * 1.1 + p[0] * 5);
+      }
+      const dr = 1 - 1.1 * h; v[0] *= dr; v[1] *= dr; v[2] *= dr;
+      const sp = Math.hypot(v[0], v[1], v[2]); if (sp > 5){ const k = 5 / sp; v[0] *= k; v[1] *= k; v[2] *= k; }
+      p[0] += v[0] * h; p[1] += v[1] * h; p[2] += v[2] * h;
+      const L = Math.hypot(p[0], p[1], p[2]);
+      if (L > RIN){
+        const nx = p[0] / L, ny = p[1] / L, nz = p[2] / L;
+        p[0] = nx * RIN; p[1] = ny * RIN; p[2] = nz * RIN;
+        const vn = v[0] * nx + v[1] * ny + v[2] * nz;
+        if (vn > 0){ v[0] -= 1.55 * vn * nx; v[1] -= 1.55 * vn * ny; v[2] -= 1.55 * vn * nz; }
+        v[0] *= .965; v[1] *= .965; v[2] *= .965;
+      }
+    }
+    for (let i = 0; i < MAXB; i++){
+      const a = balls[i]; if (!a.on) continue;
+      for (let j = i + 1; j < MAXB; j++){
+        const c = balls[j]; if (!c.on) continue;
+        const dx = c.p[0] - a.p[0], dy = c.p[1] - a.p[1], dz = c.p[2] - a.p[2], d2 = dx*dx + dy*dy + dz*dz;
+        const md = BR * ((a.gold ? 1.15 : 1) + (c.gold ? 1.15 : 1));
+        if (d2 >= md * md || d2 < 1e-9) continue;
+        const d = Math.sqrt(d2), nx = dx / d, ny = dy / d, nz = dz / d, pen = md - d;
+        const aw = a.h0 ? 0 : (c.h0 ? 1 : .5), cw = c.h0 ? 0 : (a.h0 ? 1 : .5);
+        a.p[0] -= nx * pen * aw; a.p[1] -= ny * pen * aw; a.p[2] -= nz * pen * aw;
+        c.p[0] += nx * pen * cw; c.p[1] += ny * pen * cw; c.p[2] += nz * pen * cw;
+        const rv = (c.v[0] - a.v[0]) * nx + (c.v[1] - a.v[1]) * ny + (c.v[2] - a.v[2]) * nz;
+        if (rv < 0){
+          const im = -1.5 * rv * .5;
+          if (!a.h0){ a.v[0] -= im * nx; a.v[1] -= im * ny; a.v[2] -= im * nz; }
+          if (!c.h0){ c.v[0] += im * nx; c.v[1] += im * ny; c.v[2] += im * nz; }
+        }
+      }
+    }
+  }
+}
+const MID = [0, .6, 0], TOPP = [0, 1.43, 0];
+function holdPath(b){
+  const w = b.holdW;
+  if (w < .5){ const e = ease(w * 2); return [lerp(b.h0[0], MID[0], e), lerp(b.h0[1], MID[1], e), lerp(b.h0[2], MID[2], e)]; }
+  const e = ease((w - .5) * 2); return [0, lerp(MID[1], TOPP[1], e), 0];
+}
+function applyBalls(T, dt){
+  for (let i = 0; i < MAXB; i++){
+    const b = balls[i];
+    if (i < T.count && !b.on) spawn(b);
+    if (i >= T.count && b.on){ b.on = false; b.h0 = null; b.holdW = 0; b.gold = false; }
+    b.mine = b.on && i < T.mine;
+    if (b.on && i === T.hold){
+      if (!b.h0) b.h0 = b.p.slice();
+      b.holdW = T.holdW;
+      const tg = holdPath(b), k = reduce ? 1 : 1 - Math.exp(-dt * 12);
+      b.p[0] = lerp(b.p[0], tg[0], k); b.p[1] = lerp(b.p[1], tg[1], k); b.p[2] = lerp(b.p[2], tg[2], k);
+      b.v = [0, 0, 0];
+      b.gold = T.holdW > .45;
+    } else if (b.h0){
+      b.h0 = null; b.holdW = 0; b.gold = false; b.v = [0, -.6, 0];
+      if (Math.hypot(b.p[0], b.p[1], b.p[2]) > RIN) b.p = [0, RIN - .02, 0];
+    }
+  }
+}
+function packBalls(out, mineOverride){
+  for (let i = 0; i < MAXB; i++){
+    const b = balls[i], o = i * 4;
+    if (!b.on){ out[o] = 0; out[o + 1] = 0; out[o + 2] = 0; out[o + 3] = -1; continue; }
+    const mine = mineOverride == null ? b.mine : i < mineOverride;
+    out[o] = b.p[0]; out[o + 1] = b.p[1]; out[o + 2] = b.p[2];
+    out[o + 3] = b.gold ? 4 : mine ? 3 : 1 + b.hue;
+  }
+  return out;
+}
+
+/* ===== Choreography ===== */
+const scenes = [...document.querySelectorAll("[data-scene]")].map(el => ({ el, key: el.dataset.scene }));
+function pinProgress(el){ const r = el.getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - innerHeight), 0, 1); }
+function activeScene(){
+  const mid = innerHeight * .5; let s = scenes[0];
+  for (const sc of scenes){ const r = sc.el.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid){ s = sc; break; } if (r.top > mid) break; s = sc; }
+  return s;
+}
+const HH = 6 * .2679492;
+function anchorWorld(el, fit = 3){
+  const r = el.getBoundingClientRect(), W = innerWidth, H = innerHeight;
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const x = (cx / W * 2 - 1) * (W / H) * HH, y = (1 - cy / H * 2) * HH;
+  const size = Math.min(r.width, r.height) / H * 2 * HH;
+  return [x, y, size / fit];
+}
+const stepEls = [...document.querySelectorAll("#steps li")], l3Ps = [...document.querySelectorAll(".l3 .txt p")];
+const STATUS = ["Loading", "Snapshot", "Mixing", "Winner"];
+let lastStep = -1;
+function renderDraw(p){
+  const step = p < .27 ? 0 : p < .5 ? 1 : p < .73 ? 2 : 3;
+  if (step !== lastStep){
+    lastStep = step;
+    stepEls.forEach((li, i) => { li.classList.toggle("on", i === step); li.classList.toggle("done", i < step); });
+    l3Ps.forEach((el, i) => el.classList.toggle("on", i === step));
+    $("l3-tag").textContent = `Step ${step + 1} of 4`;
+    $("r-status").textContent = STATUS[step];
+  }
+  $("draw-meter").style.width = (p * 100).toFixed(1) + "%";
+}
+let introT = reduce ? 1 : 0, sceneKey = "", sceneSwitch = 0;
+function target(){
+  const sc = activeScene(); if (sc.key !== sceneKey){ sceneKey = sc.key; sceneSwitch = performance.now(); }
+  const T = { A: null, count: 16, mine: 0, jets: .4, sun: 0, rings: 0, arc: 0, scan: -9, hold: -1, holdW: 0, shell: 1, ringsOn: 1 };
+  switch (sc.key){
+    case "hero":
+      T.A = anchorWorld($("a-hero")); T.sun = 1; T.mine = 3;
+      T.count = Math.round(14 * sstep(.22, .82, introT)); T.jets = introT > .9 ? .55 : 0;
+      T.shell = sstep(0, .35, introT); T.ringsOn = sstep(.15, .6, introT); break;
+    case "draw": {
+      const p = pinProgress(sc.el); renderDraw(p);
+      T.A = anchorWorld($("a-draw")); T.rings = 1; T.arc = p; T.mine = 4;
+      T.count = Math.round(16 * sstep(.02, .24, p));
+      T.jets = p > .5 && p < .73 ? 1 : p >= .73 ? .12 : 0;
+      T.scan = p > .27 && p < .5 ? lerp(-1.25, 1.25, sstep(.29, .48, p)) : -9;
+      if (p > .73){ T.hold = 1; T.holdW = sstep(.75, .92, p); }
+      break; }
+    case "tickets": T.A = anchorWorld($("a-tix")); T.mine = Math.min(16, ticketsNow); T.jets = .38; break;
+    case "vault": T.A = anchorWorld($("a-vault")); T.jets = .22; T.rings = .7; T.arc = vaultPct; break;
+    case "board": T.A = anchorWorld($("a-board")); T.jets = .2; T.hold = 0; T.holdW = 1; break;
+    case "token": T.A = anchorWorld($("a-tok")); T.jets = .32; break;
+    case "end": T.A = anchorWorld($("a-end")); T.jets = .45; T.sun = .85; T.hold = 0; T.holdW = 1; break;
+    default: break;
+  }
+  return T;
+}
+function objToWorld(q, P, spin, tilt){
+  let [x, y, z] = q, c = Math.cos(spin), s = Math.sin(spin);
+  const x0 = x * c - z * s, z0 = x * s + z * c; x = x0; z = z0;
+  c = Math.cos(tilt); s = Math.sin(tilt);
+  const y1 = y * c - z * s, z1 = y * s + z * c;
+  return [P[0] + x * P[3], P[1] + y1 * P[3], P[2] + z1 * P[3]];
+}
+
+/* ===== Snapshots (ticket card, og image) ===== */
+let snapStudio = null;
+const TINT_A = [1, .31, .6], TINT_B = [1, .69, .29];
+function snapshot(W, H, o){
+  if (!snapStudio) return null;
+  const c = snapStudio.canvas; c.width = W; c.height = H;
+  const half = HH * W / H;
+  snapStudio.draw({ time: o.time ?? 2, PA: [o.x * half, o.y * HH, 0, o.s], rot: [o.spin ?? .6, 1.1, 0, 0],
+    balls: packBalls(new Float32Array(64), o.mine), shell: 1, ringsOn: 1, scan: -9, sun: o.sun ?? 1, rings: 0, arc: 0,
+    win: [0, 0, 0, 0], tintA: TINT_A, tintB: TINT_B });
+  return c;
+}
+function settleForSnapshot(){
+  if (balls.some(b => b.on)) return;
+  for (let i = 0; i < 14; i++){ spawn(balls[i]); balls[i].p = [(Math.random() - .5) * .8, -.2 - Math.random() * .4, (Math.random() - .5) * .8]; }
+  for (let k = 0; k < 160; k++) physics(.03, 0, k * .03);
+}
+window.renderOG = () => { settleForSnapshot(); const c = snapshot(1200, 630, { x: 0, y: .02, s: .7, mine: 3 }); return c ? c.toDataURL("image/png") : null; };
+
+function makeCard(t){
+  settleForSnapshot();
+  const W = 1200, H = 675, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const x = cv.getContext("2d");
+  x.fillStyle = "#0b0813"; x.fillRect(0, 0, W, H);
+  const snap = snapshot(W, H, { x: .5, y: -.02, s: .66, mine: Math.min(16, t) });
+  if (snap) x.drawImage(snap, 0, 0, W, H);
+  const g = x.createLinearGradient(0, 0, W * .6, 0); g.addColorStop(0, "rgba(11,8,19,.94)"); g.addColorStop(1, "rgba(11,8,19,0)");
+  x.fillStyle = g; x.fillRect(0, 0, W * .6, H);
+  const cs = getComputedStyle(document.documentElement), disp = cs.getPropertyValue("--display"), mono = cs.getPropertyValue("--mono"), text = cs.getPropertyValue("--text");
+  x.textBaseline = "top";
+  x.fillStyle = "#fff4ee"; x.font = `800 30px ${disp}`; x.fillText(CONFIG.name.toUpperCase(), 64, 58);
+  x.fillStyle = "rgba(255,236,230,.55)"; x.font = `500 16px ${mono}`; x.fillText(`DRAW #001 · ${fmtDay(CONFIG.firstDraw).toUpperCase()} · GTA 6 RELEASE DAY`, 64, 104);
+  const num = t.toLocaleString("en-US"), size = num.length <= 2 ? 250 : num.length <= 3 ? 210 : num.length <= 5 ? 160 : 120;
+  x.font = `800 ${size}px ${disp}`;
+  const tw = x.measureText(num).width, tg = x.createLinearGradient(60, 0, 60 + tw, 0); tg.addColorStop(0, "#ff4f9a"); tg.addColorStop(1, "#ffb04a");
+  x.fillStyle = tg; x.fillText(num, 56, 430 - size * .9);
+  x.fillStyle = "#fff4ee"; x.font = `italic 800 58px ${disp}`; x.fillText(t === 1 ? "ticket" : "tickets", 64, 452);
+  x.fillStyle = "rgba(255,236,230,.75)"; x.font = `500 28px ${text}`; x.fillText("in the GTA 6 drum", 64, 524);
+  x.fillStyle = "rgba(255,236,230,.55)"; x.font = `500 17px ${mono}`;
+  x.fillText(`${PER} SOL = 1 TICKET · NO CAP`, 64, 604);
+  x.textAlign = "right"; x.fillText(CONFIG.site || TK, W - 64, 604);
+  return cv.toDataURL("image/png");
+}
+if (window.self !== window.top) $("card-dl").hidden = true;
+$("card-btn").addEventListener("click", () => {
+  const url = makeCard(ticketsNow); if (!url) return;
+  $("card-img").src = url; $("card-dl").href = url; $("card-dl").download = `tickets-${ticketsNow}.png`;
+  $("modal").hidden = false; $("modal-close").focus();
+});
+$("modal-close").addEventListener("click", () => { $("modal").hidden = true; $("card-btn").focus(); });
+$("modal").addEventListener("click", e => { if (e.target === $("modal")) $("modal").hidden = true; });
+addEventListener("keydown", e => { if (e.key === "Escape") $("modal").hidden = true; });
+function copyText(text, btn, fallbackEl){
+  const orig = btn.dataset.label || (btn.dataset.label = btn.textContent);
+  const done = () => { btn.textContent = "Copied"; btn.classList.add("copy-ok"); setTimeout(() => { btn.textContent = orig; btn.classList.remove("copy-ok"); }, 1600); };
+  const select = () => { if (!fallbackEl) return; const r = document.createRange(); r.selectNodeContents(fallbackEl); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected"; setTimeout(() => btn.textContent = orig, 2000); };
+  try { navigator.clipboard.writeText(text).then(done, select); } catch (e){ select(); }
+}
+$("card-copy").addEventListener("click", e => copyText(`I'm holding ${ticketsNow} ${ticketsNow === 1 ? "ticket" : "tickets"} for a free copy of GTA 6.\n\n${PER} SOL = 1 ticket. No cap. First draw on release day.\n\n${TK}`, e.currentTarget, $("t-hint")));
+
+/* ===== Config wiring ===== */
+(function wire(){
+  const pumpUrl = TOKEN_ADDR ? `https://pump.fun/coin/${TOKEN_ADDR}` : "https://pump.fun";
+  ["buy-nav", "buy-hero", "buy-token", "buy-foot"].forEach(id => $(id).href = pumpUrl);
+  ["ca-hero", "ca-token", "ca-foot"].forEach(id => {
+    const box = $(id), v = box.querySelector(".v"), b = box.querySelector("button");
+    if (TOKEN_ADDR){ v.textContent = TOKEN_ADDR; v.classList.add("has"); b.hidden = false; b.addEventListener("click", () => copyText(TOKEN_ADDR, b, v)); }
+  });
+  const add = (wrap, href, label) => { const a = document.createElement("a"); a.className = "btn"; a.href = href; a.target = "_blank"; a.rel = "noopener"; a.textContent = label; $(wrap).appendChild(a); };
+  if (CONFIG.dexscreener) add("token-links", CONFIG.dexscreener, "DexScreener ↗");
+  if (CONFIG.x){ add("token-links", CONFIG.x, "X ↗"); add("foot-links", CONFIG.x, "Follow on X ↗"); }
+})();
+
+/* ===== Header ===== */
+const topEl = document.querySelector(".top");
+addEventListener("scroll", () => topEl.classList.toggle("scrolled", scrollY > 30), { passive: true });
+
+/* ===== Loop ===== */
+let studio = null, scale = innerWidth < 760 ? .55 : .7, frameMs = 16, lastAdj = 0;
+const S = { time: 0, PA: [0, 0, 0, 0], rot: [0, 0, 0, 0], balls: new Float32Array(64), shell: 0, ringsOn: 0, scan: -9, sun: 0, rings: 0, arc: 0, win: [0, 0, 0, 0], tintA: TINT_A, tintB: TINT_B };
+const drum = { pos: [0, 0], s: 0, shell: 0, ringsOn: 0, sun: 0, rings: 0, arc: 0, jets: 0, glow: 0 };
+let mx = 0, my = 0, tx = 0, ty = 0, calloutsOn = false, lastCount = -1, lastMine = -1;
+addEventListener("pointermove", e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+function resize(){
+  if (!studio) return;
+  const c = studio.canvas; c.width = Math.max(2, Math.round(innerWidth * scale)); c.height = Math.max(2, Math.round(innerHeight * scale));
+}
+addEventListener("resize", resize);
+const t0 = performance.now(); let last = t0;
+function frame(now){
+  requestAnimationFrame(frame);
+  if (document.hidden){ last = now; return; }
+  const dt = Math.min(.05, (now - last) / 1000); last = now;
+  frameMs = frameMs * .92 + (dt * 1000) * .08;
+  if (now - lastAdj > 1200 && now - t0 > 2500){
+    lastAdj = now;
+    const ns = frameMs > 24 ? scale - .08 : frameMs < 14 ? scale + .05 : scale;
+    const cl = clamp(ns, .38, innerWidth < 760 ? .8 : 1);
+    if (Math.abs(cl - scale) > .01){ scale = cl; resize(); }
+  }
+  if (introT < 1) introT = clamp((now - t0 - 300) / 2800, 0, 1);
+  const time = (now - t0) / 1000;
+  const T = target();
+  applyBalls(T, dt);
+  drum.jets = lerp(drum.jets, reduce ? 0 : T.jets, 1 - Math.exp(-dt * 3));
+  if (drum.s > 0 || T.A) physics(dt, drum.jets, time);
+  const since = (now - sceneSwitch) / 1000, rate = reduce ? 1e3 : lerp(3.2, 11, clamp(since / 1.1, 0, 1));
+  const k = 1 - Math.exp(-dt * rate), k4 = 1 - Math.exp(-dt * (reduce ? 1e3 : 4));
+  const go = T.A || [drum.pos[0], drum.pos[1] - .4, 0];
+  const sT = T.A ? T.A[2] * (sceneKey === "hero" ? lerp(.6, 1, ease(introT)) : 1) : 0;
+  drum.pos[0] = lerp(drum.pos[0], go[0], k); drum.pos[1] = lerp(drum.pos[1], go[1], k);
+  drum.s = lerp(drum.s, sT, 1 - Math.exp(-dt * (reduce ? 1e3 : 6)));
+  if (drum.s < .004 && !T.A) drum.s = 0;
+  if (sceneKey === "hero" && !reduce){ drum.shell = T.shell; drum.ringsOn = T.ringsOn; }
+  else { drum.shell = lerp(drum.shell, T.shell, k4); drum.ringsOn = lerp(drum.ringsOn, T.ringsOn, k4); }
+  drum.sun = lerp(drum.sun, T.sun, 1 - Math.exp(-dt * 2.5));
+  drum.rings = lerp(drum.rings, T.rings, k4);
+  drum.arc = sceneKey === "draw" ? T.arc : lerp(drum.arc, T.arc, k4);
+  tx = lerp(tx, mx, 1 - Math.exp(-dt * 3)); ty = lerp(ty, my, 1 - Math.exp(-dt * 3));
+  const spin = reduce ? .6 : time * .22 + scrollY * .0009;
+  S.time = reduce ? 2 : time;
+  S.PA = [drum.pos[0], drum.pos[1], 0, drum.s];
+  S.rot = [spin, reduce ? 1.1 : time * .5, reduce ? 0 : tx * .3, reduce ? 0 : ty * .16];
+  packBalls(S.balls);
+  S.shell = drum.shell; S.ringsOn = drum.ringsOn; S.scan = T.scan; S.sun = drum.sun; S.rings = drum.rings; S.arc = drum.arc;
+  const gold = balls.find(b => b.on && b.gold);
+  drum.glow = lerp(drum.glow, gold ? 1 : 0, 1 - Math.exp(-dt * 4));
+  if (gold || drum.glow > .01){
+    const src = gold || balls.find(b => b.h0) || balls[0];
+    const w = objToWorld(src.p, S.PA, S.rot[0] + S.rot[2], -.16 + S.rot[3]);
+    S.win = [w[0], w[1], w[2], drum.glow * (drum.s > .001 ? 1 : 0)];
+  } else S.win = [0, 0, 0, 0];
+  studio.draw(S);
+  if (sceneKey === "draw"){
+    const cnt = balls.filter(b => b.on).length, mine = balls.filter(b => b.on && b.mine).length;
+    if (cnt !== lastCount){ lastCount = cnt; $("r-count").textContent = cnt; }
+    if (mine !== lastMine){ lastMine = mine; $("r-mine").textContent = mine; }
+  }
+  if (introT >= .98 && !calloutsOn){ calloutsOn = true; document.querySelectorAll(".callout").forEach((c, i) => setTimeout(() => c.classList.remove("dim"), i * 140)); }
+}
+
+/* ===== Boot ===== */
+renderTickets(); renderVault(); renderBoard(); renderDraw(0);
+try {
+  studio = new Studio($("stage"));
+  try { snapStudio = new Studio(document.createElement("canvas"), true); } catch (e){ snapStudio = null; }
+  resize();
+  requestAnimationFrame(frame);
+} catch (err){
+  document.body.classList.add("no-gl"); $("stage").hidden = true;
+  document.querySelectorAll(".callout").forEach(c => c.classList.remove("dim"));
+  $("card-btn").hidden = true;
+  window.__glError = String(err && err.message || err);
+}
+</script>
+
+</body>
+</html>
