@@ -51,7 +51,12 @@ button,input{font:inherit;color:inherit}
 .grain{position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 main,footer,.top{position:relative;z-index:2}
 body.no-gl{background:radial-gradient(ellipse 46% 34% at 50% 52%,rgba(255,150,90,.42),transparent 70%),radial-gradient(ellipse 90% 40% at 50% 70%,rgba(255,79,154,.18),transparent 70%),linear-gradient(#0b0813 0%,#160b1f 58%,#0b0813 100%) fixed}
-body.no-gl .anchor.drum{border-radius:50%;background:radial-gradient(circle at 36% 30%,rgba(255,255,255,.42),rgba(255,140,170,.12) 42%,transparent 70%);box-shadow:inset 0 0 0 1px rgba(255,236,230,.28)}
+body.no-gl .anchor.drum::before{content:"";position:absolute;inset:-34%;z-index:-1;pointer-events:none;background:url("drum-dark.jpg") center/cover no-repeat;-webkit-mask-image:radial-gradient(circle,#000 46%,transparent 68%);mask-image:radial-gradient(circle,#000 46%,transparent 68%)}
+body.no-gl #a-hero::before,body.no-gl #a-end::before{background-image:url("drum-sun.jpg")}
+body.no-gl #a-hero{z-index:0}
+body.no-gl .l1,body.no-gl .l2,body.no-gl .hero .eyebrow{z-index:1}
+body.no-gl .callout{z-index:1}
+#gldebug{position:fixed;left:10px;bottom:10px;z-index:99;font:12px/1.5 var(--mono);color:#fff;background:rgba(0,0,0,.8);padding:8px 10px;border-radius:6px;white-space:pre}
 
 /* header */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
@@ -634,7 +639,7 @@ footer{padding-block:clamp(120px,15vw,210px) 40px;scroll-margin-top:70px}
 const CONFIG = {
   name: "GTA 6 Giveaway",
   ticker: "GIVEAWAY",          // without the $
-  ca: "",                      // paste the mint address after launch
+  ca: "22Nu9dzp7d9E64TxxjPiJzE9zXzajj1uRks6i3kJpump",
   x: "",                       // e.g. "https://x.com/yourhandle"
   dexscreener: "",             // optional
   rpc: "",                     // optional own Solana RPC for the wallet check; empty = free public RPCs
@@ -957,7 +962,7 @@ vec3 shade(vec3 p, vec3 rd, float m){
     col=e*gold*.85+gold*(.16+.5*lam)*ao+gold*fr*.6+vec3(1.,.92,.7)*sp*2.2+gold*uWin.w*.2;
     col*=mix(.6,1.,ao);
   }
-  if(uScan>-4.){ vec3 q=toObj(p); col+=vec3(.55,1.,.92)*exp(-pow((q.y-uScan)*9.,2.))*1.4; }
+  if(uScan>-4.){ vec3 q=toObj(p); float sd=(q.y-uScan)*9.; col+=vec3(.55,1.,.92)*exp(-sd*sd)*1.4; }
   return pow(aces(col*1.02),vec3(1./2.2));
 }
 vec2 sph(vec3 ro, vec3 rd, vec3 c, float r){ vec3 oc=ro-c; float b=dot(oc,rd); float h=b*b-dot(oc,oc)+r*r; if(h<0.) return vec2(1e9,-1e9); h=sqrt(h); return vec2(-b-h,-b+h); }
@@ -1027,7 +1032,7 @@ vec3 glass(vec3 col, vec3 ro, vec3 rd, float tHit){
   vec3 R=reflect(rd,n);
   vec3 g=env(R)*fr*.9;
   g+=vec3(1.)*(pow(max(dot(R,normalize(vec3(-.4,.86,.3))),0.),260.)*1.6+pow(max(dot(R,normalize(vec3(.42,.10,.9))),0.),400.)*1.2);
-  if(uScan>-4.){ vec3 q=toObj(ps); g+=vec3(.55,1.,.92)*exp(-pow((q.y-uScan)*14.,2.))*.6; }
+  if(uScan>-4.){ vec3 q=toObj(ps); float sd=(q.y-uScan)*14.; g+=vec3(.55,1.,.92)*exp(-sd*sd)*.6; }
   if(tHit>1e8){ vec3 pb=ro+rd*sh.y, nb=normalize(uPA.xyz-pb); float fr2=pow(1.-clamp(dot(nb,-rd),0.,1.),4.); g+=env(reflect(rd,nb))*fr2*.22; }
   vec3 gd=pow(aces(g),vec3(1./2.2));
   float a=uShell*edge;
@@ -1333,6 +1338,8 @@ const t0 = performance.now(); let last = t0;
 function frame(now){
   requestAnimationFrame(frame);
   if (document.hidden){ last = now; return; }
+  if (glLost) return;
+  { const c = studio.canvas, w = Math.max(2, Math.round(innerWidth * scale)), h = Math.max(2, Math.round(innerHeight * scale)); if (c.width !== w || c.height !== h) resize(); }
   const dt = Math.min(.05, (now - last) / 1000); last = now;
   frameMs = frameMs * .92 + (dt * 1000) * .08;
   if (now - lastAdj > 1200 && now - t0 > 2500){
@@ -1383,17 +1390,30 @@ function frame(now){
 }
 
 /* ===== Boot ===== */
+let glLost = false;
+function noGL(err){
+  document.body.classList.add("no-gl"); $("stage").hidden = true;
+  document.querySelectorAll(".callout").forEach(c => c.classList.remove("dim"));
+  window.__glError = String(err && err.message || err);
+}
 renderTickets(); renderVault(); renderBoard(); renderDraw(0);
 try {
   studio = new Studio($("stage"));
   try { snapStudio = new Studio(document.createElement("canvas"), true); } catch (e){ snapStudio = null; }
+  if (!snapStudio) $("card-btn").hidden = true;
   resize();
+  $("stage").addEventListener("webglcontextlost", e => { e.preventDefault(); glLost = true; }, false);
+  $("stage").addEventListener("webglcontextrestored", () => { try { studio = new Studio($("stage")); resize(); glLost = false; } catch (e){ noGL(e); } }, false);
   requestAnimationFrame(frame);
 } catch (err){
-  document.body.classList.add("no-gl"); $("stage").hidden = true;
-  document.querySelectorAll(".callout").forEach(c => c.classList.remove("dim"));
-  $("card-btn").hidden = true;
-  window.__glError = String(err && err.message || err);
+  noGL(err); $("card-btn").hidden = true;
+}
+if (/[?&]debug\b/.test(location.search)){
+  const d = document.createElement("div"); d.id = "gldebug"; document.body.appendChild(d);
+  setInterval(() => {
+    let r = "none"; try { const g = document.createElement("canvas").getContext("webgl"), x = g && g.getExtension("WEBGL_debug_renderer_info"); r = g ? (x ? g.getParameter(x.UNMASKED_RENDERER_WEBGL) : "webgl ok") : "no webgl"; } catch (e){}
+    d.textContent = `webgl: ${window.__glError ? "FAILED " + window.__glError : studio ? "ok" : "?"}\ngpu: ${r}\ncanvas: ${studio ? studio.canvas.width + "x" + studio.canvas.height : "-"}  window: ${innerWidth}x${innerHeight}\nframe: ${Math.round(frameMs)} ms  scale: ${scale.toFixed(2)}  lost: ${glLost}`;
+  }, 500);
 }
 </script>
 
