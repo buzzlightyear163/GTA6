@@ -785,7 +785,7 @@ $("sol-in").addEventListener("input", () => renderTickets("input"));
 $("sol-range").addEventListener("input", e => { $("sol-in").value = (+e.target.value).toFixed(1).replace(/\.0$/, ""); renderTickets("range"); });
 document.querySelectorAll("#chips button").forEach(b => b.addEventListener("click", () => { $("sol-in").value = b.dataset.v; renderTickets("chip"); }));
 
-/* ===== Wallet check: balance from Solana RPC, price from DexScreener (no keys) ===== */
+/* ===== Wallet check (no keys): reads the wallet's token account and the pump.fun curve straight from Solana ===== */
 const RPCS = CONFIG.rpc ? [CONFIG.rpc] : ["https://solana-rpc.publicnode.com", "https://api.mainnet-beta.solana.com"];
 async function rpc(method, params){
   let lastErr;
@@ -799,21 +799,61 @@ async function rpc(method, params){
   }
   throw lastErr || new Error("rpc");
 }
+const B58A = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+function b58dec(str){ let n = 0n; for (const c of str){ const i = B58A.indexOf(c); if (i < 0) throw new Error("b58"); n = n * 58n + BigInt(i); } const out = []; while (n > 0n){ out.push(Number(n & 255n)); n >>= 8n; } for (const c of str){ if (c === "1") out.push(0); else break; } const b = Uint8Array.from(out.reverse()); if (b.length > 32) throw new Error("b58"); const r = new Uint8Array(32); r.set(b, 32 - b.length); return r; }
+function b58enc(bytes){ let n = 0n; for (const x of bytes) n = (n << 8n) | BigInt(x); let str = ""; while (n > 0n){ str = B58A[Number(n % 58n)] + str; n /= 58n; } for (const x of bytes){ if (x === 0) str = "1" + str; else break; } return str; }
+const FP = (1n << 255n) - 19n, fm = a => { a %= FP; return a < 0n ? a + FP : a; }, fpow = (b, e) => { let r = 1n; b = fm(b); while (e > 0n){ if (e & 1n) r = r * b % FP; b = b * b % FP; e >>= 1n; } return r; };
+const ED_D = fm(-121665n * fpow(121666n, FP - 2n));
+function onCurve(h){ let y = 0n; for (let i = 31; i >= 0; i--) y = (y << 8n) | BigInt(h[i]); y &= (1n << 255n) - 1n; y = fm(y); const y2 = y * y % FP, u = fm(y2 - 1n), v = fm(ED_D * y2 + 1n); if (v === 0n) return u === 0n; const w = u * fpow(v, FP - 2n) % FP; return w === 0n || fpow(w, (FP - 1n) / 2n) === 1n; }
+async function findPDA(seeds, prog){
+  const enc = new TextEncoder();
+  for (let b = 255; b >= 0; b--){
+    const parts = [...seeds, new Uint8Array([b]), prog, enc.encode("ProgramDerivedAddress")];
+    const buf = new Uint8Array(parts.reduce((a, x) => a + x.length, 0)); let o = 0; for (const x of parts){ buf.set(x, o); o += x.length; }
+    const h = new Uint8Array(await crypto.subtle.digest("SHA-256", buf)); if (!onCurve(h)) return h;
+  }
+  throw new Error("pda");
+}
+const ATA_PROG = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL", PUMP_PROG = "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P", WSOL = "So11111111111111111111111111111111111111112";
+let mintProg = null;
+async function tokenProgram(){
+  if (mintProg) return mintProg;
+  const r = await rpc("getAccountInfo", [TOKEN_ADDR, { encoding: "base64" }]);
+  if (!r || !r.value){ const e = new Error("nomint"); e.code = "nomint"; throw e; }
+  return (mintProg = r.value.owner);
+}
 async function tokenBalance(owner){
-  const res = await rpc("getTokenAccountsByOwner", [owner, { mint: TOKEN_ADDR }, { encoding: "jsonParsed", commitment: "confirmed" }]);
-  return (res && res.value || []).reduce((a, acc) => a + Number(acc.account.data.parsed.info.tokenAmount.uiAmountString || 0), 0);
+  const prog = await tokenProgram();
+  const ata = b58enc(await findPDA([b58dec(owner), b58dec(prog), b58dec(TOKEN_ADDR)], b58dec(ATA_PROG)));
+  const r = await rpc("getAccountInfo", [ata, { encoding: "jsonParsed" }]);
+  const amt = r && r.value && r.value.data && r.value.data.parsed && r.value.data.parsed.info && r.value.data.parsed.info.tokenAmount;
+  return amt ? Number(amt.uiAmountString || 0) : 0;
 }
 let priceCache = { t: 0, v: 0 };
 async function priceInSol(){
   if (Date.now() - priceCache.t < 30000 && priceCache.v > 0) return priceCache.v;
-  const pick = pairs => {
-    const ok = (pairs || []).filter(p => p && p.priceNative && p.quoteToken && /^(W?SOL)$/i.test(p.quoteToken.symbol || ""));
-    ok.sort((a, b) => ((b.liquidity && b.liquidity.usd) || 0) - ((a.liquidity && a.liquidity.usd) || 0));
-    return ok.length ? parseFloat(ok[0].priceNative) : 0;
-  };
   let v = 0;
-  try { const r = await fetch(`https://api.dexscreener.com/tokens/v1/solana/${TOKEN_ADDR}`); if (r.ok) v = pick(await r.json()); } catch (e){}
-  if (!v){ try { const r = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDR}`); if (r.ok) v = pick((await r.json()).pairs); } catch (e){} }
+  try {
+    const bc = b58enc(await findPDA([new TextEncoder().encode("bonding-curve"), b58dec(TOKEN_ADDR)], b58dec(PUMP_PROG)));
+    const r = await rpc("getAccountInfo", [bc, { encoding: "base64" }]);
+    if (r && r.value){
+      const d = Uint8Array.from(atob(r.value.data[0]), c => c.charCodeAt(0)), dv = new DataView(d.buffer);
+      const vTok = Number(dv.getBigUint64(8, true)), vSol = Number(dv.getBigUint64(16, true)), done = d[48] === 1;
+      if (!done && vTok > 0) v = (vSol / 1e9) / (vTok / 1e6);
+    }
+  } catch (e){}
+  if (!v){
+    try {
+      const r = await fetch(`https://api.dexscreener.com/tokens/v1/solana/${TOKEN_ADDR}`);
+      if (r.ok){ const ok = (await r.json() || []).filter(p => p && p.priceNative && p.quoteToken && /^W?SOL$/i.test(p.quoteToken.symbol || "")); ok.sort((a, b) => ((b.liquidity && b.liquidity.usd) || 0) - ((a.liquidity && a.liquidity.usd) || 0)); if (ok.length) v = parseFloat(ok[0].priceNative); }
+    } catch (e){}
+  }
+  if (!v){
+    try {
+      const r = await fetch(`https://lite-api.jup.ag/price/v3?ids=${TOKEN_ADDR},${WSOL}`);
+      if (r.ok){ const j = await r.json(); if (j[TOKEN_ADDR] && j[WSOL]) v = j[TOKEN_ADDR].usdPrice / j[WSOL].usdPrice; }
+    } catch (e){}
+  }
   if (!v) throw new Error("price");
   priceCache = { t: Date.now(), v }; return v;
 }
@@ -832,7 +872,9 @@ async function checkWallet(){
       $("sol-in").value = sol.toFixed(2); renderTickets("wallet");
     }
   } catch (e){
-    out.innerHTML = `<span class="bad">Couldn’t reach Solana right now. Try again in a minute.</span>`;
+    out.innerHTML = e && e.code === "nomint"
+      ? `${TK} isn’t live on-chain yet. Check again right after launch.`
+      : `<span class="bad">Couldn’t reach Solana right now. Try again in a minute.</span>`;
   } finally { $("w-go").disabled = false; }
 }
 const phantom = () => (window.phantom && window.phantom.solana) || (window.solana && window.solana.isPhantom ? window.solana : null);
