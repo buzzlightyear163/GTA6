@@ -635,6 +635,7 @@ footer{padding-block:clamp(120px,15vw,210px) 40px;scroll-margin-top:70px}
 </div>
 
 <script>
+{ /* block scope: keeps every name local, so wallet extensions (window.phantom, window.solana, ...) can never clash */
 /* ===== Edit these ===== */
 const CONFIG = {
   name: "GTA 6 Giveaway",
@@ -877,7 +878,7 @@ async function checkWallet(){
       : `<span class="bad">Couldn’t reach Solana right now. Try again in a minute.</span>`;
   } finally { $("w-go").disabled = false; }
 }
-const phantom = () => (window.phantom && window.phantom.solana) || (window.solana && window.solana.isPhantom ? window.solana : null);
+const phantomWallet = () => (window.phantom && window.phantom.solana) || (window.solana && window.solana.isPhantom ? window.solana : null);
 (function wireCheck(){
   if (!TOKEN_ADDR){
     $("check").classList.add("off");
@@ -886,10 +887,10 @@ const phantom = () => (window.phantom && window.phantom.solana) || (window.solan
   }
   $("w-form").addEventListener("submit", e => { e.preventDefault(); checkWallet(); });
   $("w-in").addEventListener("paste", () => setTimeout(() => { if (isAddr($("w-in").value.trim())) checkWallet(); }, 0));
-  if (phantom()){
+  if (phantomWallet()){
     $("w-phantom").hidden = false;
     $("w-phantom").addEventListener("click", async () => {
-      try { const r = await phantom().connect(); $("w-in").value = r.publicKey.toString(); checkWallet(); } catch (e){}
+      try { const r = await phantomWallet().connect(); $("w-in").value = r.publicKey.toString(); checkWallet(); } catch (e){}
     });
   }
 })();
@@ -1456,6 +1457,8 @@ if (/[?&]debug\b/.test(location.search)){
     let r = "none"; try { const g = document.createElement("canvas").getContext("webgl"), x = g && g.getExtension("WEBGL_debug_renderer_info"); r = g ? (x ? g.getParameter(x.UNMASKED_RENDERER_WEBGL) : "webgl ok") : "no webgl"; } catch (e){}
     d.textContent = `webgl: ${window.__glError ? "FAILED " + window.__glError : studio ? "ok" : "?"}\ngpu: ${r}\ncanvas: ${studio ? studio.canvas.width + "x" + studio.canvas.height : "-"}  window: ${innerWidth}x${innerHeight}\nframe: ${Math.round(frameMs)} ms  scale: ${scale.toFixed(2)}  lost: ${glLost}`;
   }, 500);
+}
+window.__qa = { lock(v){ scale = v; resize(); lastAdj = 1e15; } };
 }
 </script>
 
